@@ -14,6 +14,23 @@
 <meta property="og:locale:alternate" content="en_US">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Carolina Verran | Product Designer">
+<!-- Métricas: Google Analytics 4 + Microsoft Clarity (só no site publicado no GitHub Pages) -->
+<script>
+(function () {
+  if (!/\.github\.io$/.test(location.hostname)) return;
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { dataLayer.push(arguments); };
+  gtag("js", new Date());
+  gtag("config", "G-ZLC3RV94EE");
+  var g = document.createElement("script"); g.async = true; g.src = "https://www.googletagmanager.com/gtag/js?id=G-ZLC3RV94EE";
+  document.head.appendChild(g);
+  (function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+  })(window, document, "clarity", "script", "zcpa41x1yx");
+})();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap">
@@ -1379,6 +1396,24 @@ document.addEventListener("click", e => {
   e.stopPropagation(); hbPicked = true; hbSet(+b.dataset.acc);
 }, true);   // captura: o toque na cor não vira o card nem abre o modal
 setInterval(() => { if (!hbPicked && !reduceMotion.matches && !document.hidden) hbSet((hbIdx + 1) % HB_COLORS.length); }, 2400);
+/* ---- Métricas: eventos (GA4 + Clarity). Sem efeito fora do GitHub Pages. ---- */
+function track(name, params = {}) {
+  try {
+    params.language = LANG;
+    if (window.gtag) gtag("event", name, params);
+    if (window.clarity) { clarity("event", name); Object.entries(params).forEach(([k, v]) => clarity("set", k, String(v))); }
+  } catch {}
+}
+document.addEventListener("click", e => {
+  const el = e.target.closest("a, button"); if (!el) return;
+  const href = el.getAttribute("href") || "";
+  if (/\.pdf$/i.test(href) || /\.pdf$/i.test(el.href || "")) track("download_cv", { file: (el.href || href).split("/").pop() });
+  else if (href.startsWith("mailto:")) track("contact_email_click");
+  else if (href.includes("linkedin.com")) track("linkedin_click");
+  else if (el.id === "copy-email") track("copy_contact", { type: "email" });
+  else if (el.matches("[data-copy]")) track("copy_contact", { type: "phone" });
+  else if (el.id === "lang-switch") setTimeout(() => track("change_language"), 0);
+}, true);
 function workCard(p) {
   return `<article class="work reveal" data-id="${p.id}" aria-labelledby="w-${p.id}">
     <div class="flip">
@@ -1451,6 +1486,7 @@ function fillModal(i) {
     <div><dt>${t("dtDone")}</dt><dd><ul class="done">${L(p.done).map(d => `<li>${esc(d)}</li>`).join("")}</ul></dd></div>`;
 }
 function openModal(id, from) {
+  track("open_project", { project: id });
   returnFocus = from || document.activeElement;
   fillModal(indexOf(id));
   if (!modal.open) modal.showModal();
@@ -1607,6 +1643,7 @@ const cvDialog = $("#cv-dialog");
 const setCvPdf = () => { try { $("#cv-pdf").href = new URL(LANG === "en" ? "cv-carolina-verran-en.pdf" : CONTACT.cv, location.href).href; } catch {} };
 setCvPdf();
 function openCv(from) {
+  track("view_cv");
   returnFocus = from;
   cvDialog.showModal(); document.body.style.overflow = "hidden";
   cvDialog.querySelector(`.cv-doc[data-lang="${LANG}"]`).scrollTop = 0;
