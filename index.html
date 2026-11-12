@@ -369,7 +369,6 @@ a { color: inherit; }
 .face-back .chip, .modal-dl .chip { border-color: var(--red); color: var(--red-deep); }
 .face-back .chips { display: flex; flex-wrap: wrap; gap: 6px; }
 .face-back .actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
-.face-back .back-btn { display: none; font-family: var(--f-mono); font-size: var(--t-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-2); padding: 10px 4px; text-decoration: underline; text-underline-offset: 4px; }
 
 .work.is-flipped .flip-inner, .work:focus-within .flip-inner { transform: rotateY(180deg); }
 /* Safari (iPhone) ignora o backface-visibility de elementos internos com camada própria (etiquetas, título, imagem)
@@ -386,7 +385,6 @@ a { color: inherit; }
 }
 @media (hover: none), (pointer: coarse) {
   .face-front .tap-hint { display: inline-flex; }
-  .face-back .back-btn { display: inline-block; }
   .flip { cursor: pointer; }
 }
 
@@ -1208,7 +1206,6 @@ const UI = {
   openSummary: ["abrir resumo do projeto", "open project summary"],
   tapFlip: ["Toque para virar ↻", "Tap to flip ↻"],
   details: ["Ver detalhes", "View details"],
-  backImg: ["Voltar à imagem", "Back to image"],
   illustrative: ["Imagem ilustrativa", "Illustrative image"],
   dtContext: ["Contexto", "Context"],
   dtChallenge: ["Desafio", "Challenge"],
@@ -1312,7 +1309,6 @@ function workCard(p) {
           <div class="chips">${chips([L(p.type), p.category])}</div>
           <div class="actions">
             <button class="btn btn--line btn--small btn--plain" type="button" data-open="${p.id}">${t("details")}</button>
-            <button class="back-btn" type="button" data-unflip>${t("backImg")}</button>
           </div>
         </div>
       </div>
@@ -1344,10 +1340,9 @@ function onWorkClick(e) {
   if (open) { e.stopPropagation(); openModal(open.dataset.open, open); return; }
   const work = e.target.closest(".work");
   if (!work) return;
-  if (e.target.closest("[data-unflip]")) { work.classList.remove("is-flipped"); document.activeElement?.blur(); return; }  // sem o foco no botão, o card não fica preso virado (Chrome no Android)
   if (e.target.closest(".flip")) {
     if (finePointer.matches) openModal(work.dataset.id, work);   // mouse: o verso já está visível no hover
-    else work.classList.toggle("is-flipped");                    // toque: toque vira a carta
+    else if (!work.classList.toggle("is-flipped")) document.activeElement?.blur();  // toque: toque vira a carta (e desvira, sem ficar preso pelo foco)
   }
 }
 $("#grid").addEventListener("click", onWorkClick);
