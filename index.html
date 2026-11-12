@@ -372,7 +372,15 @@ a { color: inherit; }
 .face-back .back-btn { display: none; font-family: var(--f-mono); font-size: var(--t-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-2); padding: 10px 4px; text-decoration: underline; text-underline-offset: 4px; }
 
 .work.is-flipped .flip-inner, .work:focus-within .flip-inner { transform: rotateY(180deg); }
+/* Safari (iPhone) ignora o backface-visibility de elementos internos com camada própria (etiquetas, título, imagem)
+   e mostra a frente espelhada por cima do verso. Por isso, além da rotação, cada face some na metade do giro. */
+.face-front { -webkit-transform: rotateY(0deg); transform: rotateY(0deg); transition: visibility 0s linear .25s; }
+.face-back { opacity: 0; transition: opacity 0s linear .25s; }
+.work.is-flipped .face-front, .work:focus-within .face-front { visibility: hidden; }
+.work.is-flipped .face-back, .work:focus-within .face-back { opacity: 1; }
 @media (hover: hover) and (pointer: fine) {
+  .work:hover .face-front { visibility: hidden; }
+  .work:hover .face-back { opacity: 1; }
   .work:hover .flip-inner { transform: rotateY(180deg); }
   .work:hover .face-front .cover { transform: scale(1.04); }
 }
@@ -1336,7 +1344,7 @@ function onWorkClick(e) {
   if (open) { e.stopPropagation(); openModal(open.dataset.open, open); return; }
   const work = e.target.closest(".work");
   if (!work) return;
-  if (e.target.closest("[data-unflip]")) { work.classList.remove("is-flipped"); return; }
+  if (e.target.closest("[data-unflip]")) { work.classList.remove("is-flipped"); document.activeElement?.blur(); return; }  // sem o foco no botão, o card não fica preso virado (Chrome no Android)
   if (e.target.closest(".flip")) {
     if (finePointer.matches) openModal(work.dataset.id, work);   // mouse: o verso já está visível no hover
     else work.classList.toggle("is-flipped");                    // toque: toque vira a carta
