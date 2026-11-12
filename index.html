@@ -1,0 +1,1597 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Carolina Verran</title>
+<link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" data-i18n-content="metaDesc" content="Portfólio de Carolina Verran Hübler, Product Designer.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Carolina Verran | Product Designer">
+<meta property="og:description" content="Portfólio de Carolina Verran Hübler, Product Designer: UX/UI, UX Research, Product Strategy e Design Systems.">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Carolina Verran | Product Designer">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: editorial single page. Grey hero with a fan of project windows sinking into a red band,
+   white panel with a staggered 2x2 grid, two-column about, three discipline cards, red closing. */
+:root {
+  color-scheme: light;
+  /* Brand */
+  --red: #FF292E;          /* marca: fundos, destaques, interação */
+  --red-deep: #D4161B;     /* vermelho para texto pequeno sobre branco (AA) */
+  --white: #FFFFFF;
+  --grey: #F2F2F2;
+  /* Neutrals (levemente quentes, puxando para o vermelho) */
+  --ink: #111010;
+  --ink-2: #4B4747;
+  --ink-3: #6E6969;
+  --line: rgba(17, 16, 16, .12);
+  --line-strong: rgba(17, 16, 16, .22);
+  --stage-ink: #1B1A1A;
+  /* Type */
+  --f-display: "Manrope", "Helvetica Neue", Arial, sans-serif;
+  --f-body: "Manrope", "Helvetica Neue", Arial, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  /* Scale */
+  --t-hero: clamp(3.5rem, 9.4vw, 10.5rem);
+  /* Escala tipográfica única:
+     Título (H2) · Subtítulo (H3) · Texto · Interface (botões, abas, menu) · Apoio (tags, legendas) · Rótulo mono */
+  --t-h2: clamp(2rem, 4.6vw, 3rem);
+  --t-h3: clamp(1.25rem, 2.4vw, 1.75rem);
+  --t-h4: clamp(1.25rem, 1.8vw, 1.5rem);
+  --t-body: 1rem;
+  --t-ui: 1rem;
+  --t-small: .875rem;
+  --t-mono: .75rem;
+  /* Space + shape */
+  --gutter: clamp(16px, 4vw, 64px);
+  --maxw: 1360px;
+  --r-lg: 28px;
+  --r-md: 18px;
+  --r-sm: 10px;
+  --ease: cubic-bezier(.2, .8, .2, 1);
+  --ease-spring: cubic-bezier(.34, 1.4, .5, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+body {
+  background: var(--white);
+  color: var(--ink);
+  font-family: var(--f-body);
+  font-size: var(--t-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 60; background: var(--grey); }
+img { max-width: 100%; display: block; }
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--red); outline-offset: 3px; border-radius: 6px; }
+::selection { background: var(--red); color: var(--ink); }
+
+.wrap {
+  width: 100%;
+  max-width: calc(var(--maxw) + 2 * var(--gutter));
+  margin-inline: auto;
+  padding-left: max(var(--gutter), env(safe-area-inset-left, 0px));
+  padding-right: max(var(--gutter), env(safe-area-inset-right, 0px));
+}
+.mono {
+  font-family: var(--f-mono);
+  font-size: var(--t-mono);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  line-height: 1.5;
+}
+.eyebrow { display: inline-flex; align-items: center; gap: 10px; color: var(--ink-2); }
+.eyebrow::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--red); flex: none; }
+.h2 {
+  font-family: var(--f-display);
+  font-weight: 800;
+  font-size: var(--t-h2);
+  line-height: .98;
+  letter-spacing: -.05em;
+  text-wrap: balance;
+  margin: 0;
+}
+.h2 .dot { color: var(--red); }
+.skip {
+  position: absolute; left: 16px; top: -60px; z-index: 100;
+  background: var(--ink); color: var(--white); padding: 10px 16px; border-radius: 99px; text-decoration: none;
+}
+.skip:focus { top: calc(12px + env(safe-area-inset-top, 0px)); }
+
+/* ---------- Buttons ---------- */
+.btn {
+  --bg: var(--ink); --fg: var(--white);
+  display: inline-flex; align-items: center; gap: 12px;
+  min-height: 52px; padding: 0 22px 0 26px;
+  border-radius: 99px;
+  background: var(--bg); color: var(--fg);
+  font-weight: 700; font-size: var(--t-ui); letter-spacing: -.01em;
+  text-decoration: none;
+  transition: transform .35s var(--ease), background-color .25s, color .25s, box-shadow .35s var(--ease);
+}
+.btn .arrow {
+  display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%;
+  background: var(--fg); color: var(--bg);
+  transition: transform .45s var(--ease);
+}
+/* Primário: preto + texto branco; hover vermelho + texto preto */
+.btn:hover { --bg: var(--white); --fg: var(--ink); box-shadow: inset 0 0 0 1.5px var(--red); transform: translateY(-2px); }
+.btn:hover .arrow { transform: rotate(-45deg); }
+.btn:active { transform: translateY(0) scale(.98); }
+.btn--plain { padding: 0 26px; }
+.btn--small.btn--plain { padding: 0 22px; }
+/* Secundário: branco + borda e texto pretos; hover com borda vermelha */
+.btn--line { --bg: var(--white); --fg: var(--ink); box-shadow: inset 0 0 0 1.5px var(--ink); }
+.btn--line .arrow { background: var(--ink); color: var(--white); }
+.btn--line:hover { --bg: var(--white); --fg: var(--ink); box-shadow: inset 0 0 0 1.5px var(--red); }
+.btn--line:hover .arrow { background: var(--white); color: var(--ink); }
+.btn--small { min-height: 42px; padding: 0 16px 0 18px; font-size: var(--t-ui); }
+.btn--small .arrow { width: 24px; height: 24px; }
+.icon { width: 16px; height: 16px; flex: none; }
+
+.chip {
+  display: inline-flex; align-items: center;
+  padding: 5px 12px; border-radius: 99px;
+  border: 1px solid var(--line-strong);
+  font-size: var(--t-small); line-height: 1.3; font-weight: 500; color: var(--ink-2);
+  white-space: nowrap;
+}
+
+/* ---------- Header / nav ---------- */
+.site-header {
+  position: fixed; top: env(safe-area-inset-top, 0px); left: 0; right: 0; z-index: 50;
+  transition: background-color .3s, box-shadow .3s, transform .4s var(--ease);
+}
+.site-header.is-scrolled { background: rgba(255,255,255,.86); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); box-shadow: 0 1px 0 var(--line); }
+.nav { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 72px; }
+.brand { display: inline-flex; align-items: baseline; gap: 2px; font-weight: 800; font-size: 1.125rem; letter-spacing: -.04em; text-decoration: none; }
+.brand .dot { color: var(--red); font-size: 1.6em; line-height: 0; }
+.brand-mark { align-items: center; }
+.brand-mark img { display: block; width: 40px; height: 40px; transition: transform .4s var(--ease); }
+.brand-mark .mono-svg { display: block; width: 40px; height: 40px; overflow: visible; transition: transform .4s var(--ease); }
+.mono-star { fill: #EE2A2E; stroke: #EE2A2E; }
+.nav-links { display: flex; align-items: center; gap: 4px; list-style: none; margin: 0; padding: 4px; border-radius: 99px; background: rgba(255,255,255,.7); box-shadow: inset 0 0 0 1px var(--line); }
+.nav-links a {
+  display: block; padding: 8px 16px; border-radius: 99px; text-decoration: none;
+  font-size: var(--t-ui); font-weight: 600; color: var(--ink-2);
+  transition: background-color .25s, color .25s;
+}
+.nav-links a:hover { color: var(--ink); background: var(--grey); }
+.nav-links a[aria-current="true"] { background: var(--ink); color: var(--white); }
+.nav-end { display: flex; align-items: center; gap: 12px; }
+/* Menu do meio centralizado na tela (não no espaço entre logo e botões) */
+@media (min-width: 1081px) { .nav { position: relative; } .nav > nav { position: absolute; left: 50%; transform: translateX(-50%); } }
+/* Switch de idioma: pílula PT | EN com marcador que desliza para o idioma ativo */
+.lang-switch {
+  position: relative; display: inline-grid; grid-template-columns: 1fr 1fr; align-items: center;
+  height: 42px; padding: 4px; border-radius: 99px; background: rgba(255,255,255,.7); box-shadow: inset 0 0 0 1px var(--line);
+  font-family: var(--f-mono); font-size: var(--t-mono); font-weight: 500; letter-spacing: .08em; cursor: pointer;
+}
+.lang-knob { position: absolute; top: 4px; bottom: 4px; left: 4px; width: calc(50% - 4px); border-radius: 99px; background: var(--ink); transition: transform .35s var(--ease); }
+.lang-switch[aria-checked="true"] .lang-knob { transform: translateX(100%); }
+.lang-opt { position: relative; display: grid; place-items: center; height: 100%; padding: 0 12px; color: var(--ink-2); transition: color .35s; }
+.lang-switch[aria-checked="false"] .lang-opt:nth-child(2),
+.lang-switch[aria-checked="true"] .lang-opt:nth-child(3) { color: var(--white); }
+@media (hover: hover) and (pointer: fine) { .lang-switch:hover { box-shadow: inset 0 0 0 1.5px var(--red); } }
+@media (prefers-reduced-motion: reduce) { .lang-knob { transition: none; } }
+/* Telas bem estreitas (até 380px): cabeçalho e títulos mais compactos para não gerar rolagem lateral */
+@media (max-width: 1080px) { .nav > nav { display: none; } }
+@media (max-width: 380px) {
+  :root { --t-h2: 1.75rem; }
+  .nav-end { gap: 8px; }
+  .lang-opt { padding: 0 9px; }
+  .menu-btn { padding: 0 14px; }
+  .tabs .tab { padding: 10px 10px; }
+}
+.menu-btn { display: none; align-items: center; gap: 10px; min-height: 44px; padding: 0 18px; border-radius: 99px; background: var(--ink); color: var(--white); font-weight: 700; font-size: var(--t-ui); }
+.menu-btn span { display: block; width: 16px; height: 2px; background: currentColor; box-shadow: 0 5px 0 currentColor; transform: translateY(-2.5px); }
+
+.mobile-menu {
+  position: fixed; inset: 0; z-index: 80;
+  background: var(--red); color: var(--ink);
+  padding: calc(20px + env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) calc(28px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
+  display: flex; flex-direction: column;
+  animation: menuIn .45s var(--ease);
+}
+@keyframes menuIn { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0 0 0 0); } }
+.mobile-menu .top { display: flex; justify-content: space-between; align-items: center; }
+.mobile-menu .close { min-height: 44px; padding: 0 18px; border-radius: 99px; background: var(--ink); color: var(--white); font-weight: 700; }
+.mobile-menu ol { list-style: none; margin: auto 0; padding: 0; display: grid; gap: 6px; }
+.mobile-menu ol a { display: flex; justify-content: space-between; align-items: baseline; text-decoration: none; font-size: var(--t-h2); font-weight: 800; letter-spacing: -.05em; line-height: 1.05; padding: 6px 0; border-bottom: 1.5px solid rgba(17,16,16,.25); }
+.mobile-menu ol a .mono { font-size: var(--t-mono); }
+.mobile-menu .foot { color: var(--ink); }
+
+/* ---------- Hero ---------- */
+.hero { background: var(--grey); padding-top: calc(72px + clamp(40px, 7vw, 96px)); position: relative; overflow: hidden; }
+.hero-head { text-align: center; display: grid; justify-items: center; gap: clamp(18px, 2.4vw, 28px); }
+.hero-name {
+  font-family: var(--f-display);
+  font-weight: 800;
+  font-size: var(--t-hero);
+  line-height: .86;
+  letter-spacing: -.065em;
+  margin: 0;
+  white-space: nowrap;
+}
+.hero-name .line { display: inline-block; overflow: hidden; padding: .04em .02em .08em; vertical-align: top; }
+.hero-name .line > span { display: inline-block; animation: rise 1s var(--ease) both; }
+.hero-name .line:nth-child(2) > span { animation-delay: .08s; }
+.hero-name .dot { color: var(--red); }
+.hero-logo .line { padding: 0; }
+.hero-logo .logo-svg { display: block; width: min(980px, 70vw); height: auto; overflow: visible; animation: rise 1s var(--ease) both; cursor: default; }
+.hero-logo .logo-mobile { display: none; height: auto; animation: rise 1s var(--ease) both; }
+.logo-text { fill: var(--ink); transition: fill .35s ease; }
+.logo-star { fill: #EE2A2E; stroke: #EE2A2E; transform-box: fill-box; transform-origin: center; animation: tw 3.2s ease-in-out infinite; }
+.logo-spin { transform-box: fill-box; transform-origin: center; transition: transform .9s var(--ease); }
+.logo-tap.is-on .logo-text { fill: var(--red); }
+.logo-tap.is-on .logo-spin { transform: rotate(360deg); }
+.logo-tap.is-on.mono-svg { transform: rotate(-8deg) scale(1.06); }
+@keyframes tw { 0%, 100% { transform: rotate(0deg) scale(1); } 50% { transform: rotate(14deg) scale(.86); } }
+@media (prefers-reduced-motion: reduce) { .logo-star { animation: none; } .logo-spin { transition: none; } }
+@keyframes rise { from { transform: translateY(105%); } to { transform: translateY(0); } }
+
+.fan {
+  position: relative;
+  height: min(calc(21.5vw + 40px), 350px);
+  margin-top: clamp(40px, 5vw, 64px);
+  margin-bottom: clamp(32px, 3.5vw, 48px);
+  --px: 0; --py: 0;
+}
+.fan-card {
+  position: absolute;
+  left: calc(50% + var(--x));
+  top: 0;
+  width: var(--w);
+  aspect-ratio: 4 / 3;
+  border-radius: var(--r-md);
+  background: var(--stage-ink);
+  box-shadow: 0 1px 0 rgba(255,255,255,.08) inset, 0 24px 40px -24px rgba(17,16,16,.55);
+  outline-offset: 6px;
+  z-index: var(--z);
+  transform:
+    translateX(-50%)
+    translateX(calc(var(--spread, 0) * 34px + var(--px) * var(--depth) * 14px))
+    translateY(calc(var(--y) + var(--lift, 0px) + var(--py) * var(--depth) * 8px))
+    rotate(calc(var(--r) * var(--tilt, 1)))
+    scale(var(--scale, 1));
+  transition: transform .7s var(--ease-spring), box-shadow .4s;
+  animation: fanIn 1.1s var(--ease) backwards;
+  animation-delay: calc(.25s + var(--i) * .07s);
+  cursor: pointer;
+}
+.fan-card img { width: 100%; height: 100%; object-fit: cover; object-position: center; border-radius: inherit; pointer-events: none; }
+.fan-card .label {
+  position: absolute; left: 12px; top: 12px; max-width: calc(100% - 68px); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  background: var(--white); color: var(--ink);
+  padding: 6px 10px; border-radius: 99px;
+  font-family: var(--f-mono); font-size: var(--t-mono); letter-spacing: .08em; text-transform: uppercase;
+  opacity: 0; transform: translateY(6px);
+  transition: opacity .3s, transform .4s var(--ease);
+}
+.fan-card .open {
+  position: absolute; right: 12px; top: 12px; width: 36px; height: 36px; border-radius: 50%;
+  display: grid; place-items: center; background: var(--white); color: var(--ink);
+  transform: scale(0); transition: transform .45s var(--ease-spring);
+}
+.fan-card:hover, .fan-card:focus-visible { --lift: -34px; --tilt: .2; --scale: 1.06; z-index: 20; box-shadow: 0 40px 60px -28px rgba(17,16,16,.6); }
+.fan-card:hover .label, .fan-card:focus-visible .label { opacity: 1; transform: none; }
+.fan-card:hover .open, .fan-card:focus-visible .open { transform: scale(1); }
+.fan-card:active { --scale: 1.02; }
+@keyframes fanIn {
+  from { transform: translateX(-50%) translateX(calc(var(--x) * -.6)) translateY(70%) rotate(0deg) scale(.9); }
+}
+
+.band { background: var(--red); color: var(--ink); position: relative; z-index: 31; }
+.band-inner { display: grid; grid-template-columns: minmax(0, 1fr); align-items: center; gap: clamp(20px, 4vw, 56px); padding-block: 12px; }
+.marquee { overflow: hidden; mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+.marquee-track { display: flex; width: max-content; animation: marquee 46s linear infinite; }
+.marquee:hover .marquee-track { animation-play-state: paused; }
+.marquee ul { display: flex; gap: clamp(56px, 7vw, 112px); list-style: none; margin: 0; padding: 0 clamp(28px, 3.5vw, 56px); }
+.marquee ul { align-items: center; }
+.marquee li { display: flex; align-items: center; height: 56px; flex: none; }
+.marquee li img { display: block; width: auto; max-width: none; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+/* ---------- Projects ---------- */
+.projects { background: var(--grey); padding-block: clamp(20px, 3vw, 40px) clamp(64px, 8vw, 120px); }
+.panel { background: var(--white); border-radius: var(--r-lg); padding: clamp(24px, 4vw, 56px); }
+.section-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; flex-wrap: wrap; margin-bottom: clamp(32px, 5vw, 64px); }
+.section-head .h2 { margin-top: 0; }
+.section-lead { max-width: 42ch; margin: 0; font-size: var(--t-body); line-height: 1.6; color: var(--ink-2); }
+
+.grid { display: grid; gap: clamp(28px, 3.4vw, 48px) clamp(16px, 2vw, 28px); }
+.grid-row { display: grid; gap: clamp(16px, 2vw, 28px); align-items: start; }
+.grid-row:nth-child(odd) { grid-template-columns: 1.28fr .72fr; }
+.grid-row:nth-child(even) { grid-template-columns: .82fr 1.18fr; }
+.grid-row:nth-child(odd) .work:nth-child(2) { margin-top: clamp(40px, 6vw, 96px); }
+.grid-row:nth-child(even) .work:nth-child(1) { margin-top: clamp(-56px, -3vw, 0px); }
+.grid-row.grid-row--single { grid-template-columns: 1fr; }
+.grid-row--single .work:nth-child(n) { margin-top: 0; }
+
+.work { display: grid; gap: 14px; min-width: 0; }
+.flip { perspective: 1800px; height: clamp(380px, 38vw, 540px); position: relative; }
+.flip-inner {
+  position: relative; width: 100%; height: 100%;
+  transform-style: preserve-3d;
+  transition: transform .85s var(--ease);
+  border-radius: var(--r-lg);
+}
+.face {
+  position: absolute; inset: 0; border-radius: var(--r-lg); overflow: hidden;
+  backface-visibility: hidden; -webkit-backface-visibility: hidden;
+}
+.face-front { background: var(--stage); }
+.face-front[data-stage="ink"] { --stage: var(--stage-ink); }
+.face-front[data-stage="red"] { --stage: var(--red); }
+.face-front[data-stage="grey"] { --stage: var(--grey); }
+.face-front .shot {
+  position: absolute; border-radius: 14px; box-shadow: 0 30px 50px -30px rgba(0,0,0,.65), 0 0 0 1px rgba(255,255,255,.06);
+  transition: transform .9s var(--ease);
+}
+.face-front .shot[data-fit="wide"] { left: 9%; top: 14%; height: 64%; width: auto; max-width: none; }
+.face-front .shot[data-fit="box"] { left: 50%; top: 13%; width: 78%; transform: translateX(-50%) rotate(-2deg); }
+.face-front .cover { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 1s var(--ease); }
+.face-front::after { content: ""; position: absolute; inset: auto 0 0 0; height: 46%; background: linear-gradient(to top, rgba(10,10,12,.82) 0%, rgba(10,10,12,.45) 50%, rgba(10,10,12,0) 100%); pointer-events: none; }
+.front-bar { position: absolute; z-index: 1; left: clamp(18px, 2.2vw, 28px); right: clamp(16px, 2vw, 24px); bottom: clamp(16px, 2vw, 24px); display: flex; flex-wrap: nowrap; align-items: flex-end; justify-content: space-between; gap: 10px 16px; }
+.front-title { min-width: 0; display: grid; gap: 4px; color: #FFFFFF; text-shadow: 0 1px 12px rgba(0,0,0,.35); }
+.front-title b { font-size: var(--t-h3); font-weight: 800; letter-spacing: -.04em; line-height: 1.05; }
+.front-title span { font-size: var(--t-small); color: rgba(255,255,255,.85); }
+.face-front .cat { flex: none; margin-left: auto; white-space: nowrap; background: var(--white); color: var(--ink); padding: 5px 11px; border-radius: 99px; font-family: var(--f-mono); font-size: var(--t-mono); line-height: 1.4; letter-spacing: .08em; text-transform: uppercase; box-shadow: 0 0 0 1px var(--line); }
+@media (max-width: 720px) { .face-front .cat { font-size: .625rem; padding: 4px 9px; } }
+.front-bar, .face-front .tap-hint { pointer-events: none; }
+.work.is-flipped .face-front, .work:focus-within .face-front { pointer-events: none; }
+@media (hover: hover) and (pointer: fine) { .work:hover .face-front { pointer-events: none; } }
+.face-front .tap-hint { position: absolute; z-index: 1; right: 16px; top: 16px; display: none; align-items: center; gap: 8px; background: var(--white); color: var(--ink); padding: 8px 12px; border-radius: 99px; font-family: var(--f-mono); font-size: var(--t-mono); letter-spacing: .08em; text-transform: uppercase; }
+
+.face-back {
+  transform: rotateY(180deg);
+  background: var(--white);
+  box-shadow: inset 0 0 0 1.5px var(--red);
+  display: flex; flex-direction: column; justify-content: space-between; gap: 20px;
+  padding: clamp(22px, 2.6vw, 36px);
+}
+.face-back .meta { display: flex; justify-content: space-between; gap: 12px; color: var(--ink-3); }
+.face-back .meta .client { color: var(--red-deep); }
+.face-back h3 { font-size: var(--t-h3); line-height: 1.05; letter-spacing: -.04em; font-weight: 800; margin: 10px 0 0; text-wrap: balance; }
+.face-back p { margin: 0; font-size: var(--t-body); line-height: 1.6; color: var(--ink-2); max-width: 42ch; }
+.face-back .chip, .modal-dl .chip { border-color: var(--red); color: var(--red-deep); }
+.face-back .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.face-back .actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
+.face-back .back-btn { display: none; font-family: var(--f-mono); font-size: var(--t-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-2); padding: 10px 4px; text-decoration: underline; text-underline-offset: 4px; }
+
+.work.is-flipped .flip-inner, .work:focus-within .flip-inner { transform: rotateY(180deg); }
+@media (hover: hover) and (pointer: fine) {
+  .work:hover .flip-inner { transform: rotateY(180deg); }
+  .work:hover .face-front .cover { transform: scale(1.04); }
+}
+@media (hover: none), (pointer: coarse) {
+  .face-front .tap-hint { display: inline-flex; }
+  .face-back .back-btn { display: inline-block; }
+  .flip { cursor: pointer; }
+}
+
+
+
+
+
+@keyframes drop { from { transform: translateY(-14px); opacity: 0; } }
+
+/* ---------- About ---------- */
+.about { padding-block: clamp(80px, 10vw, 160px); background: var(--white); }
+.about-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(40px, 7vw, 120px); align-items: start; }
+.portrait { margin: 0; position: sticky; top: 104px; display: grid; gap: 14px; }
+.portrait-stack { position: relative; padding: 0 22px 22px 0; max-width: 330px; width: 100%; margin-inline: auto; }
+.portrait-stack::before { content: ""; position: absolute; inset: 22px 0 0 22px; background: var(--red); border-radius: 50%; transition: transform .6s var(--ease); }
+.portrait-frame {
+  position: relative; aspect-ratio: 1; border-radius: 50%; overflow: hidden;
+  background: var(--grey); box-shadow: 0 0 0 1.5px var(--ink);
+}
+.portrait-frame img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.06); transition: filter .7s var(--ease), transform 1.2s var(--ease); }
+.portrait:hover .portrait-frame img, .portrait.is-color .portrait-frame img { filter: none; transform: scale(1.03); }
+.portrait:hover .portrait-stack::before { transform: translate(6px, 6px); }
+@keyframes spin { to { transform: rotate(360deg); } }
+.portrait figcaption { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; color: var(--ink-3); padding-right: 22px; }
+
+.about-copy { display: grid; gap: clamp(28px, 3vw, 40px); min-width: 0; }
+.tabs { display: inline-flex; gap: 4px; padding: 5px; border-radius: 99px; background: var(--grey); width: fit-content; max-width: 100%; overflow-x: auto; }
+.tab { padding: 10px 18px; border-radius: 99px; font-weight: 700; font-size: var(--t-ui); color: var(--ink-2); white-space: nowrap; transition: background-color .3s, color .3s; }
+.tab:hover { color: var(--ink); }
+.tab[aria-selected="true"] { background: var(--ink); color: var(--white); }
+.tabpanel { min-height: 280px; }
+.tabpanel:not([hidden]) { animation: drop .5s var(--ease); }
+.bio { font-size: var(--t-body); line-height: 1.6; color: var(--ink-2); max-width: 46ch; margin: 0; }
+.bio strong { color: var(--ink); font-weight: 700; }
+.facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; margin-top: 32px; border-top: 1px solid var(--line); }
+.fact { padding: 18px 16px 0 0; }
+.fact + .fact { padding-left: 16px; border-left: 1px solid var(--line); }
+.fact b { display: block; font-size: var(--t-h2); font-weight: 800; letter-spacing: -.04em; line-height: 1.05; color: var(--red); }
+.fact span { display: block; color: var(--ink-3); font-size: var(--t-small); margin-top: 8px; line-height: 1.35; }
+
+.timeline { list-style: none; margin: 0; padding: 0; display: grid; }
+.timeline li { display: grid; grid-template-columns: 9.5rem minmax(0, 1fr); gap: 20px; padding: 22px 0; border-top: 1px solid var(--line); }
+.timeline li:last-child { border-bottom: 1px solid var(--line); }
+.timeline .when { font-family: var(--f-mono); font-size: var(--t-small); letter-spacing: .04em; color: var(--red-deep); padding-top: 4px; font-variant-numeric: tabular-nums; }
+.timeline h3 { margin: 0; font-size: var(--t-h4); line-height: 1.25; letter-spacing: -.02em; font-weight: 800; }
+.timeline h3 span { display: block; margin-top: 2px; color: var(--ink-3); font-weight: 500; font-size: var(--t-body); letter-spacing: 0; }
+.timeline p { margin: 8px 0 12px; color: var(--ink-2); font-size: var(--t-body); line-height: 1.6; max-width: 56ch; }
+.timeline .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.about-cta { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+
+/* ---------- Services ---------- */
+.services { background: var(--grey); padding-block: clamp(80px, 10vw, 150px); }
+.services .section-head p { max-width: 34ch; margin: 0; color: var(--ink-2); }
+.svc-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(12px, 1.4vw, 20px); align-items: stretch; }
+.svc {
+  --c-bg: var(--white); --c-fg: var(--ink); --c-muted: var(--ink-2); --c-accent: var(--red); --c-line: var(--line-strong);
+  background: var(--c-bg); color: var(--c-fg);
+  border-radius: var(--r-lg);
+  padding: clamp(22px, 2.4vw, 34px);
+  display: flex; flex-direction: column; gap: 22px;
+  min-height: 560px; min-width: 0;
+  position: relative; overflow: hidden;
+  transition: background-color .5s var(--ease), color .4s, transform .6s var(--ease), box-shadow .4s var(--ease);
+  outline: none;
+}
+.svc.is-active, .svc:hover, .svc:focus-visible { --c-line: rgba(255,41,46,.45); box-shadow: inset 0 0 0 2px var(--red); transform: translateY(-6px); }
+.svc:focus-visible { box-shadow: inset 0 0 0 2px var(--red), 0 0 0 3px var(--ink); }
+.svc .top { display: flex; justify-content: space-between; align-items: center; color: var(--c-muted); }
+.svc .count { font-family: var(--f-mono); font-size: var(--t-mono); letter-spacing: .08em; }
+.svc h3 { margin: 0; font-size: var(--t-h3); line-height: 1.05; letter-spacing: -.04em; font-weight: 800; }
+.svc h3 span { display: block; }
+.svc h3 span:last-child { padding-left: .55em; }
+.svc .graphic { width: 100%; height: auto; aspect-ratio: 240 / 150; overflow: visible; }
+.svc p { flex: 1; }
+.svc p { margin: 0; color: var(--c-muted); font-size: var(--t-body); line-height: 1.6; }
+.svc .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.svc .chip { border-color: var(--c-line); color: var(--c-fg); }
+
+/* graphics */
+.g-stroke { stroke: var(--c-fg); fill: none; stroke-width: 1.5; transition: stroke .4s; }
+.g-fill { fill: var(--c-accent); transition: fill .4s, transform .9s var(--ease); }
+.g-soft { fill: var(--c-fg); opacity: .08; transition: opacity .4s; }
+.g-ui rect { transform-box: fill-box; transform-origin: center; transition: transform .9s var(--ease), fill .4s, stroke .4s; }
+.svc.is-active .g-ui .a, .svc:hover .g-ui .a, .svc:focus-visible .g-ui .a { transform: translate(0, 104px); }
+.svc.is-active .g-ui .b, .svc:hover .g-ui .b, .svc:focus-visible .g-ui .b { transform: translate(0, 22px); }
+.svc.is-active .g-ui .c, .svc:hover .g-ui .c, .svc:focus-visible .g-ui .c { transform: translate(0, 22px); }
+.svc.is-active .g-ui .d, .svc:hover .g-ui .d, .svc:focus-visible .g-ui .d { transform: translate(0, -80px); }
+.svc.is-active .g-ui .cursor, .svc:hover .g-ui .cursor, .svc:focus-visible .g-ui .cursor { transform: translate(-110px, -14px); }
+.g-ui .cursor { transform-box: fill-box; transition: transform 1.1s var(--ease); }
+.g-dots circle.dot { transition: transform 1s var(--ease), fill .4s; transition-delay: calc(var(--k) * 18ms); transform: translate(0, 0); }
+.svc.is-active .g-dots circle.dot, .svc:hover .g-dots circle.dot, .svc:focus-visible .g-dots circle.dot { transform: translate(var(--dx), var(--dy)); }
+.g-dots .cluster { opacity: 0; transform-box: fill-box; transform-origin: center; transform: scale(.6); transition: opacity .5s .35s, transform .8s .35s var(--ease); }
+.svc.is-active .g-dots .cluster, .svc:hover .g-dots .cluster, .svc:focus-visible .g-dots .cluster { opacity: 1; transform: scale(1); }
+.g-path .wander { stroke-dasharray: 4 6; transition: opacity .5s; }
+.g-path .direct { stroke-dasharray: 260; stroke-dashoffset: 260; stroke-width: 3; transition: stroke-dashoffset 1.1s var(--ease); }
+.svc.is-active .g-path .direct, .svc:hover .g-path .direct, .svc:focus-visible .g-path .direct { stroke-dashoffset: 0; }
+.svc.is-active .g-path .wander, .svc:hover .g-path .wander, .svc:focus-visible .g-path .wander { opacity: .35; }
+.g-path .node { transform-box: fill-box; transform-origin: center; transition: transform .6s var(--ease-spring); }
+.svc.is-active .g-path .node, .svc:hover .g-path .node, .svc:focus-visible .g-path .node { transform: scale(1.3); }
+.g-path .pick { transition: fill .4s, transform .6s var(--ease-spring); }
+.svc.is-active .g-path .pick, .svc:hover .g-path .pick, .svc:focus-visible .g-path .pick { fill: var(--c-accent); stroke: var(--c-accent); }
+.g-path .opt { transition: opacity .4s; }
+.svc.is-active .g-path .opt, .svc:hover .g-path .opt, .svc:focus-visible .g-path .opt { opacity: .3; }
+.g-ds .tile { transform-box: fill-box; transform-origin: center; transform: translate(var(--dx), var(--dy)) rotate(var(--rot)); transition: transform .9s var(--ease); transition-delay: calc(var(--k) * 45ms); }
+.svc.is-active .g-ds .tile, .svc:hover .g-ds .tile, .svc:focus-visible .g-ds .tile { transform: none; }
+.g-ds .sw { transform-box: fill-box; transform-origin: center; transition: transform .6s var(--ease-spring); }
+.svc.is-active .g-ds .sw, .svc:hover .g-ds .sw, .svc:focus-visible .g-ds .sw { transform: scale(1.15); }
+
+/* ---------- Contact ---------- */
+.contact { background: var(--white); color: var(--ink); padding-block: clamp(56px, 7vw, 112px) clamp(16px, 2vw, 32px); position: relative; overflow: hidden; }
+.contact-card { border: 2px solid var(--red); border-radius: var(--r-lg); padding: clamp(24px, 4.5vw, 72px); }
+.contact-top { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; color: var(--ink-2); }
+.contact-title {
+  margin: 0 0 clamp(40px, 6vw, 80px);
+  font-weight: 800; letter-spacing: -.05em; line-height: .98;
+  font-size: var(--t-h2);
+  color: var(--ink);
+  display: flex; align-items: flex-end; justify-content: space-between; gap: 24px;
+}
+.contact-title .q { color: var(--red); }
+.contact-title svg { width: clamp(48px, 5vw, 80px); height: auto; flex: none; transition: transform .7s var(--ease); }
+.contact-star { animation: twinkle 3.2s ease-in-out infinite; transform-origin: 50% 50%; }
+.contact-star path { transition: transform .8s var(--ease); transform-origin: 0 0; }
+.contact-title:hover .contact-star path { transform: rotate(180deg) scale(1.15); }
+@keyframes twinkle { 0%, 100% { transform: rotate(0deg) scale(1); } 50% { transform: rotate(14deg) scale(.86); } }
+@media (prefers-reduced-motion: reduce) { .contact-star { animation: none; } }
+.channels { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 2px solid var(--red); }
+.channel { display: grid; grid-template-columns: 8.5rem minmax(0, 1fr) auto; align-items: center; gap: 16px; padding: 22px 0; border-bottom: 1px solid rgba(17,16,16,.3); min-width: 0; }
+.channel:nth-child(odd) { padding-right: clamp(16px, 3vw, 40px); }
+.channel:nth-child(even) { padding-left: clamp(16px, 3vw, 40px); border-left: 1px solid rgba(17,16,16,.3); }
+.channel .k { font-family: var(--f-mono); font-size: var(--t-mono); letter-spacing: .12em; text-transform: uppercase; }
+.channel .v { font-weight: 700; font-size: var(--t-body); letter-spacing: -.01em; overflow-wrap: anywhere; min-width: 0; }
+.channel .v a { text-decoration: none; background: linear-gradient(currentColor, currentColor) 0 100% / 0 2px no-repeat; transition: background-size .4s var(--ease); }
+.channel .v a:hover { background-size: 100% 2px; }
+/* Área de toque maior (≥ 40px) sem mudar o visual do link */
+.channel .v a { position: relative; }
+.channel .v a::after { content: ""; position: absolute; inset: -10px -4px; }
+.icon-btn { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border-radius: 99px; background: var(--ink); color: var(--white); font-weight: 700; font-size: var(--t-ui); white-space: nowrap; text-decoration: none; transition: transform .3s var(--ease), background-color .3s, color .3s; }
+.icon-btn:hover { background: var(--white); color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--red); transform: translateY(-2px); }
+.icon-btn.ok { background: var(--white); color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--red); }
+.placeholder .v { font-weight: 500; font-size: var(--t-body); letter-spacing: 0; user-select: auto; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.ph-tag { font-family: var(--f-mono); font-size: var(--t-mono); letter-spacing: .12em; text-transform: uppercase; padding: 4px 8px; border-radius: 6px; border: 1.5px dashed var(--ink); white-space: nowrap; }
+.placeholder .icon-btn { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--ink); opacity: .55; cursor: not-allowed; }
+.placeholder .icon-btn:hover { transform: none; background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--ink); }
+
+.footer { background: var(--white); padding-top: clamp(48px, 6vw, 80px); overflow: hidden; }
+.footer-row { display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: 20px 40px; color: var(--ink-2); font-size: var(--t-small); }
+.footer-row > :last-child { justify-self: end; }
+.footer-row nav { order: -1; display: flex; justify-content: flex-start; gap: 8px 28px; flex-wrap: wrap; }
+.footer-row nav a { font-size: var(--t-ui); font-weight: 700; padding: 6px 0; }
+.footer-row a { text-decoration: none; font-weight: 600; color: var(--ink); }
+@media (max-width: 900px) {
+  .footer-row { grid-template-columns: 1fr; justify-items: center; text-align: center; gap: 20px; }
+  .footer-row > :last-child { justify-self: center; }
+  .footer-row nav { justify-content: center; }
+}
+@media (max-width: 720px) {
+  .footer-row nav { flex-wrap: nowrap; gap: 18px; }
+  .footer-row nav a { white-space: nowrap; }
+}
+@media (max-width: 350px) {
+  .footer-row nav { gap: 12px; }
+}
+.footer-row a:hover { color: var(--red-deep); }
+.to-top { display: inline-flex; align-items: center; gap: 8px; font-family: var(--f-mono); font-size: var(--t-mono); letter-spacing: .1em; text-transform: uppercase; }
+.wordmark { margin: clamp(32px, 5vw, 64px) 0 0; display: flex; justify-content: center; user-select: none; pointer-events: none; }
+.wordmark img { display: block; width: min(1400px, 94%); height: auto; transform: translateY(14%); }
+
+/* ---------- Modal ---------- */
+dialog.modal {
+  width: min(1120px, calc(100vw - 32px)); max-width: none; height: min(620px, calc(100dvh - 32px)); max-height: calc(100dvh - 32px);
+  padding: 0; border: 0; border-radius: var(--r-lg);
+  background: var(--white); color: var(--ink);
+  overflow: hidden; box-shadow: 0 40px 120px -40px rgba(0,0,0,.6);
+}
+dialog.modal::backdrop { background: rgba(17,16,16,.55); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+dialog.modal[open] { animation: modalIn .55s var(--ease); }
+dialog.modal[open]::backdrop { animation: fade .4s ease; }
+@keyframes modalIn { from { transform: translateY(24px) scale(.97); opacity: 0; } }
+@keyframes fade { from { opacity: 0; } }
+.modal-shell { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); grid-template-rows: minmax(0, 1fr); height: 100%; max-height: calc(100dvh - 32px); }
+.modal-media { background: var(--stage-ink); position: relative; min-height: 420px; overflow: hidden; }
+.modal-media[data-stage="red"] { background: var(--red); }
+.modal-media[data-stage="grey"] { background: var(--grey); }
+.modal-media img { position: absolute; left: 8%; top: 50%; transform: translateY(-50%); width: auto; max-width: none; height: 46%; border-radius: 12px; box-shadow: 0 30px 60px -30px rgba(0,0,0,.7); }
+.media-note { position: absolute; left: 16px; bottom: 16px; display: inline-flex; align-items: center; gap: 7px; padding: 6px 12px 6px 10px; border-radius: 999px; background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.26); color: #fff; font-family: var(--f-body); font-size: var(--t-small); font-weight: 600; letter-spacing: .01em; line-height: 1; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+.media-note::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #fff; opacity: .85; }
+.modal-media img.cover { left: 0; top: 0; width: 100%; height: 100%; max-width: 100%; object-fit: cover; transform: none; border-radius: 0; box-shadow: none; }
+.done { margin: 0; padding-left: 1.1em; display: grid; gap: 6px; color: var(--ink); }
+.done li::marker { color: var(--red); }
+.modal-media img[data-fit="box"] { left: 50%; width: 82%; height: auto; transform: translate(-50%, -50%); }
+.modal-body { padding: clamp(24px, 3vw, 40px); display: flex; flex-direction: column; gap: 22px; overflow-y: auto; min-width: 0; }
+.modal-bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.modal-bar .ctrls { display: flex; gap: 6px; }
+.round { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; box-shadow: inset 0 0 0 1.5px var(--line-strong); transition: background-color .25s, color .25s, box-shadow .25s; }
+.round:hover { background: var(--ink); color: var(--white); box-shadow: none; }
+.round.close { background: var(--red); color: var(--ink); box-shadow: none; }
+.round.close:hover { background: var(--ink); color: var(--white); }
+.modal-body h2 { margin: 6px 0 0; font-size: var(--t-h3); line-height: 1.05; letter-spacing: -.04em; font-weight: 800; text-wrap: balance; }
+.modal-dl { display: grid; gap: 0; margin: 0; border-top: 1.5px solid rgba(17, 16, 16, .3); }
+.modal-dl div { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.modal-dl div:last-child { border-bottom: 0; }
+.modal-dl dt { font-family: var(--f-mono); font-size: var(--t-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); padding-top: 3px; }
+.modal-dl dd { margin: 0; color: var(--ink-2); }
+.modal-dl dd.lead { color: var(--ink); }
+.modal-dl dd { font-size: var(--t-body); line-height: 1.6; }
+.modal-dl .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+
+/* ---------- Movimento único para todos os botões ---------- */
+.btn, .icon-btn, .round, .menu-btn, .mobile-menu .close { transition: transform .35s var(--ease), background-color .25s, color .25s, box-shadow .25s; }
+.btn:hover, .icon-btn:hover, .round:hover, .menu-btn:hover, .mobile-menu .close:hover { transform: translateY(-2px); }
+.btn:active, .icon-btn:active, .round:active, .menu-btn:active, .mobile-menu .close:active { transform: translateY(0) scale(.98); }
+.menu-btn:hover { background: var(--white); color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--red); }
+.mobile-menu .close:hover { background: var(--white); color: var(--ink); }
+.placeholder .icon-btn:hover, .placeholder .icon-btn:active { transform: none; }
+
+/* ---------- Currículo ---------- */
+dialog.cv-dialog { width: min(860px, calc(100vw - 32px)); max-width: none; max-height: calc(100dvh - 32px); padding: 0; border: 0; border-radius: var(--r-lg); background: var(--white); color: var(--ink); box-shadow: 0 40px 120px -40px rgba(0,0,0,.6); overflow: hidden; }
+dialog.cv-dialog[open] { display: flex; flex-direction: column; animation: modalIn .55s var(--ease); }
+dialog.cv-dialog::backdrop { background: rgba(17,16,16,.55); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+.cv-bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 16px clamp(20px, 4vw, 40px); border-bottom: 1px solid var(--line); }
+.cv-actions { display: flex; align-items: center; gap: 8px; }
+.cv-doc { overflow-y: auto; padding: clamp(24px, 4vw, 48px) clamp(20px, 5vw, 56px) clamp(32px, 5vw, 56px); display: grid; gap: 32px; }
+.cv-doc h2 { margin: 0; font-size: var(--t-h3); font-weight: 800; letter-spacing: -.04em; line-height: 1.05; }
+.cv-meta { margin: 8px 0 0; color: var(--ink-3); font-size: var(--t-small); }
+.cv-doc h3 { margin: 0 0 12px; padding-bottom: 8px; border-bottom: 1.5px solid var(--ink); font-family: var(--f-mono); font-size: var(--t-mono); letter-spacing: .12em; text-transform: uppercase; font-weight: 500; }
+.cv-doc h4 { margin: 0; font-size: var(--t-body); font-weight: 800; letter-spacing: -.01em; }
+.cv-doc p, .cv-doc li { margin: 0; color: var(--ink-2); font-size: var(--t-small); line-height: 1.6; max-width: 72ch; }
+.cv-doc p + p { margin-top: 10px; }
+.cv-doc b { color: var(--ink); }
+.cv-doc ul { margin: 10px 0 0; padding-left: 1.1em; display: grid; gap: 6px; }
+.cv-doc li::marker { color: var(--red); }
+.cv-when { color: var(--red-deep) !important; font-size: var(--t-small) !important; font-family: var(--f-mono); letter-spacing: .04em; margin: 4px 0 8px !important; }
+.cv-job + .cv-job { margin-top: 24px; }
+.cv-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+.cv-cols h3 ~ h3 { margin-top: 24px; }
+@media (max-width: 720px) {
+  dialog.cv-dialog { width: 100vw; max-height: 100dvh; height: 100dvh; border-radius: 0; margin: 0; }
+  .cv-cols { grid-template-columns: 1fr; }
+}
+
+/* ---------- Motion on scroll (transform only: content stays visible at rest) ---------- */
+.js .reveal { transform: translateY(36px); transition: transform 1s var(--ease); }
+.js .reveal.in { transform: none; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1080px) {
+  .nav-links { display: none; }
+  .menu-btn { display: inline-flex; }
+  .nav .btn { display: none; }
+  .modal-shell { grid-template-columns: 1fr; grid-template-rows: none; overflow-y: auto; }
+  .modal-media { min-height: 260px; }
+  .modal-body { overflow: visible; }
+}
+@media (min-width: 721px) and (max-width: 1180px) {
+  .svc-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 721px) and (max-width: 1080px) {
+  .fan { height: calc(27vw + 40px); }
+  .fan-card { width: calc(var(--w) * 1.25); left: calc(50% + var(--x) * 1.1); }
+}
+@media (max-width: 900px) {
+  .channels { grid-template-columns: 1fr; }
+  .channel:nth-child(n) { padding-left: 0; padding-right: 0; border-left: 0; }
+  .grid-row:nth-child(n) { grid-template-columns: 1fr 1fr; }
+  .grid-row .work:nth-child(n) { margin-top: 0; }
+}
+@media (max-width: 720px) {
+  .hero-name { white-space: normal; line-height: .84; font-size: clamp(3.75rem, 21vw, 8rem); }
+  .hero-name .line { display: block; }
+  .hero-logo .logo-svg { display: none; }
+  .hero-logo .logo-mobile { display: block; width: min(300px, 76vw); }
+  .about-grid { grid-template-columns: minmax(0, 1fr); }
+  .portrait { position: relative; top: 0; max-width: none; width: 100%; }
+  .portrait-stack { max-width: 230px; padding: 0 14px 14px 0; margin-inline: auto; }
+  .portrait-stack::before { inset: 14px 0 0 14px; }
+  .contact-top span:last-child { display: none; }
+  .channel .v { overflow-wrap: break-word; }
+  .hero { padding-top: calc(72px + 72px); }
+  .fan { height: calc(60vw + 30px); margin-top: 160px; margin-bottom: 48px; }
+  .fan-card { width: calc(var(--w) * 2.55); left: calc(50% + var(--x) * 2.2); }
+  .fan-card[data-i="0"], .fan-card[data-i="4"] { display: none; }
+  .fan-card .label, .fan-card .open { display: none; }
+  .band-inner { grid-template-columns: 1fr; gap: 12px; }
+  .grid-row:nth-child(n) { grid-template-columns: 1fr; }
+  .flip { height: clamp(380px, 112vw, 480px); }
+  .svc-list { grid-template-columns: 1fr; }
+  .svc .graphic { max-width: 300px; }
+  .facts { grid-template-columns: 1fr 1fr 1fr; }
+  .timeline li { grid-template-columns: 1fr; gap: 6px; }
+  .channel { grid-template-columns: 1fr auto; row-gap: 6px; }
+  .channel .k { grid-column: 1 / -1; }
+  .contact-title { flex-direction: column; align-items: flex-start; }
+  .modal-dl div { grid-template-columns: 1fr; gap: 4px; }
+  dialog.modal { width: 100vw; max-height: 100dvh; height: 100dvh; border-radius: 0; margin: 0; }
+  .modal-shell { max-height: 100dvh; height: 100%; }
+  .modal-body { padding-bottom: calc(24px + env(safe-area-inset-bottom, 0px)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
+  html { scroll-behavior: auto; }
+  .flip-inner { transform: none !important; }
+  .face { backface-visibility: visible; transition: opacity .2s !important; }
+  .face-back { transform: none; opacity: 0; pointer-events: none; }
+  .work.is-flipped .face-back, .work:focus-within .face-back { opacity: 1; pointer-events: auto; }
+  .marquee-track { animation: none; flex-wrap: wrap; width: auto; }
+  .marquee-track ul[aria-hidden], .marquee li.dup { display: none; }
+  .marquee ul { flex-wrap: wrap; row-gap: 8px; }
+  .js .reveal { transform: none; }
+}
+@media (prefers-reduced-motion: reduce) and (hover: hover) and (pointer: fine) {
+  .work:hover .face-back { opacity: 1; pointer-events: auto; }
+}
+</style>
+
+<a class="skip" href="#conteudo" data-i18n="skip">Pular para o conteúdo</a>
+
+<header class="site-header" id="top-bar">
+  <div class="wrap nav">
+    <a class="brand brand-mark" href="#inicio" aria-label="Carolina Verran, voltar ao início" data-i18n-aria="brandAria"><svg class="mono-svg logo-tap" viewBox="0 0 100 100" width="40" height="40" aria-hidden="true"><path class="logo-text" d="M48.68 86.208Q38.488 86.208 30.323999999999998 81.99600000000001Q22.16 77.784 17.48 69.464Q12.8 61.144000000000005 12.8 48.976Q12.8 36.808 17.532 27.968Q22.264 19.128 30.531999999999996 14.396Q38.8 9.664000000000001 49.408 9.664000000000001Q61.68 9.664000000000001 68.232 13.096000000000004Q74.78399999999999 16.528000000000006 74.78399999999999 23.288000000000004Q74.78399999999999 28.488 71.976 31.868000000000002Q69.168 35.248000000000005 64.28 35.248000000000005Q60.12 35.248000000000005 56.22 34.156000000000006Q52.32 33.064 47.12 33.064Q40.464 33.064 36.616 36.912000000000006Q32.768 40.760000000000005 32.768 47.0Q32.768 53.136 36.616 57.244Q40.464 61.352000000000004 47.12 61.352000000000004Q50.656 61.352000000000004 53.62 60.78Q56.583999999999996 60.208 59.443999999999996 59.584Q62.303999999999995 58.96 65.632 58.96Q71.144 58.96 73.744 62.548Q76.344 66.136 76.344 71.44Q76.344 76.744 72.496 80.02000000000001Q68.648 83.296 62.355999999999995 84.75200000000001Q56.064 86.208 48.68 86.208Z"/><g transform="translate(80.00 24.00) rotate(10) scale(0.2581)"><g class="logo-spin"><path class="mono-star" d="M6 -58 C9 -18 14 -9 54 -7 C15 -3 7 6 -3 60 C-6 13 -12 4 -52 5 C-12 -2 -4 -13 6 -58 Z" stroke-width="5" stroke-linejoin="round"/></g></g></svg></a>
+    <nav aria-label="Principal" data-i18n-aria="navMain">
+      <ul class="nav-links">
+        <li><a href="#projetos" data-i18n="navProjects">Projetos</a></li>
+        <li><a href="#sobre" data-i18n="navAbout">Sobre</a></li>
+        <li><a href="#servicos" data-i18n="navServices">Atuação</a></li>
+        <li><a href="#contato" data-i18n="navContact">Contato</a></li>
+      </ul>
+    </nav>
+    <div class="nav-end">
+      <button class="lang-switch" type="button" role="switch" id="lang-switch" aria-checked="false" aria-label="English"><span class="lang-knob" aria-hidden="true"></span><span class="lang-opt" aria-hidden="true">PT</span><span class="lang-opt" aria-hidden="true">EN</span></button>
+      <a class="btn btn--red btn--small btn--plain" href="#contato" data-i18n="letsTalk">Vamos conversar</a>
+      <button class="menu-btn" type="button" id="menu-open" aria-expanded="false" aria-controls="mobile-menu"><span aria-hidden="true"></span>Menu</button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menu" hidden>
+  <div class="top">
+    <span class="brand brand-mark"><img src="img/monograma-carolina-verran-menu.svg" alt="Carolina Verran" width="40" height="40"></span>
+    <button class="close" type="button" id="menu-close" data-i18n="close">Fechar</button>
+  </div>
+  <ol>
+    <li><a href="#projetos"><span data-i18n="navProjects">Projetos</span> <span class="mono" id="menu-count">( 06 )</span></a></li>
+    <li><a href="#sobre" data-i18n="aboutMe">Sobre mim</a></li>
+    <li><a href="#servicos" data-i18n="services">Áreas de atuação</a></li>
+    <li><a href="#contato" data-i18n="navContact">Contato</a></li>
+  </ol>
+  <p class="foot mono" data-bind="email"></p>
+</div>
+
+<main id="conteudo">
+  <!-- ============ 1. HERO ============ -->
+  <section class="hero" id="inicio" aria-labelledby="hero-name">
+    <div class="wrap">
+      <div class="hero-head">
+        <h1 class="hero-name hero-logo" id="hero-name"><span class="line"><svg class="logo-svg logo-tap" viewBox="-8.9 -89.1 793.2 101.4" width="793" height="101" role="img" aria-label="Carolina Verran"><path class="logo-text" d="M37.6 0.2Q27.8 0.2 19.950000000000003 -3.85Q12.100000000000001 -7.9 7.6000000000000005 -15.900000000000002Q3.1 -23.900000000000002 3.1 -35.6Q3.1 -47.300000000000004 7.65 -55.8Q12.200000000000001 -64.3 20.150000000000002 -68.85Q28.1 -73.4 38.300000000000004 -73.4Q50.1 -73.4 56.400000000000006 -70.1Q62.7 -66.8 62.7 -60.300000000000004Q62.7 -55.300000000000004 60.0 -52.050000000000004Q57.300000000000004 -48.800000000000004 52.6 -48.800000000000004Q48.6 -48.800000000000004 44.85 -49.85000000000001Q41.1 -50.900000000000006 36.1 -50.900000000000006Q29.700000000000003 -50.900000000000006 26.0 -47.2Q22.3 -43.5 22.3 -37.5Q22.3 -31.6 26.0 -27.650000000000002Q29.700000000000003 -23.700000000000003 36.1 -23.700000000000003Q39.5 -23.700000000000003 42.35 -24.25Q45.2 -24.8 47.95 -25.4Q50.7 -26.0 53.900000000000006 -26.0Q59.2 -26.0 61.7 -22.55Q64.2 -19.1 64.2 -14.0Q64.2 -8.9 60.5 -5.75Q56.800000000000004 -2.6 50.75 -1.2Q44.7 0.2 37.6 0.2ZM82.7 0.0Q75.30000000000001 0.0 71.15 -4.0Q67.0 -8.0 67.0 -15.200000000000001Q67.0 -22.400000000000002 71.80000000000001 -25.650000000000002Q76.60000000000001 -28.900000000000002 84.10000000000001 -28.900000000000002Q88.5 -28.900000000000002 92.1 -28.300000000000004Q95.7 -27.700000000000003 98.6 -26.6H98.9V-28.1Q98.9 -30.400000000000002 97.2 -31.75Q95.5 -33.1 92.9 -33.0Q90.4 -33.0 88.65 -32.7Q86.9 -32.4 84.30000000000001 -31.700000000000003Q79.5 -30.5 76.0 -31.900000000000002Q72.5 -33.300000000000004 71.2 -37.4Q70.0 -41.7 71.75 -44.6Q73.5 -47.5 77.10000000000001 -49.1Q80.2 -50.6 84.05000000000001 -51.6Q87.9 -52.6 92.4 -52.6Q105.5 -52.6 111.65 -46.25Q117.80000000000001 -39.900000000000006 117.80000000000001 -25.0V-9.5Q117.80000000000001 -5.4 115.30000000000001 -2.7Q112.80000000000001 0.0 108.4 0.0Q103.60000000000001 0.0 101.25 -2.7Q98.9 -5.4 98.9 -9.3V-11.600000000000001H96.9Q96.9 -9.0 95.95 -6.3Q95.0 -3.6 92.05000000000001 -1.8Q89.10000000000001 0.0 82.7 0.0ZM83.7 -21.900000000000002Q83.7 -20.200000000000003 84.95 -19.5Q86.2 -18.8 90.4 -18.8Q94.2 -18.8 95.7 -19.5Q97.2 -20.200000000000003 97.2 -21.900000000000002Q97.2 -23.5 95.7 -24.15Q94.2 -24.8 90.4 -24.8Q86.2 -24.8 84.95 -24.15Q83.7 -23.5 83.7 -21.900000000000002ZM131.9 0.0Q127.20000000000002 0.0 124.60000000000002 -2.7Q122.00000000000001 -5.4 122.00000000000001 -9.5V-42.300000000000004Q122.00000000000001 -46.6 124.60000000000002 -49.45Q127.20000000000002 -52.300000000000004 131.9 -52.300000000000004Q136.60000000000002 -52.300000000000004 139.10000000000002 -49.45Q141.60000000000002 -46.6 141.60000000000002 -42.5V-40.400000000000006H143.5Q143.9 -45.7 147.5 -49.1Q151.10000000000002 -52.5 156.0 -52.5Q160.9 -52.5 163.75 -49.5Q166.60000000000002 -46.5 166.60000000000002 -41.5Q166.60000000000002 -36.800000000000004 163.90000000000003 -33.7Q161.20000000000002 -30.6 157.0 -30.6Q153.5 -30.6 151.15 -32.25Q148.8 -33.9 147.70000000000002 -36.1Q144.5 -36.5 143.05 -35.45Q141.60000000000002 -34.4 141.60000000000002 -31.3V-9.5Q141.60000000000002 -5.4 139.10000000000002 -2.7Q136.60000000000002 0.0 131.9 0.0ZM194.4 0.2Q182.7 0.2 175.75 -6.750000000000001Q168.8 -13.700000000000001 168.8 -26.400000000000002Q168.8 -34.2 172.0 -40.1Q175.2 -46.0 180.95 -49.35Q186.7 -52.7 194.4 -52.7Q203.0 -52.7 208.7 -49.35Q214.4 -46.0 217.25 -40.1Q220.1 -34.2 220.1 -26.400000000000002Q220.1 -13.700000000000001 213.75 -6.750000000000001Q207.4 0.2 194.4 0.2ZM180.7 -28.1Q180.7 -25.0 183.8 -23.75Q186.9 -22.5 194.4 -22.5Q201.9 -22.5 205.0 -23.75Q208.1 -25.0 208.1 -28.1Q208.1 -31.1 205.0 -32.3Q201.9 -33.5 194.4 -33.5Q186.9 -33.5 183.8 -32.3Q180.7 -31.1 180.7 -28.1ZM233.4 0.0Q228.5 0.0 226.05 -2.6Q223.60000000000002 -5.2 223.60000000000002 -9.1V-67.10000000000001Q223.60000000000002 -71.4 226.05 -74.25Q228.5 -77.10000000000001 233.4 -77.10000000000001Q237.8 -77.10000000000001 240.20000000000002 -74.25Q242.60000000000002 -71.4 242.60000000000002 -67.3V-9.1Q242.60000000000002 -5.2 240.20000000000002 -2.6Q237.8 0.0 233.4 0.0ZM246.20000000000002 -63.900000000000006Q246.20000000000002 -68.2 248.85000000000002 -70.85Q251.5 -73.5 256.2 -73.5Q261.2 -73.5 263.65 -70.9Q266.1 -68.3 266.1 -64.0Q266.1 -59.800000000000004 263.65 -57.25Q261.2 -54.7 256.2 -54.7Q251.3 -54.7 248.75 -57.25Q246.20000000000002 -59.800000000000004 246.20000000000002 -63.900000000000006ZM256.2 0.0Q251.5 0.0 249.2 -2.6Q246.9 -5.2 246.9 -9.1V-43.300000000000004Q246.9 -47.6 249.2 -50.1Q251.5 -52.6 256.2 -52.6Q260.9 -52.6 263.25 -50.1Q265.6 -47.6 265.6 -43.5V-9.1Q265.6 -5.2 263.15 -2.6Q260.7 0.0 256.2 0.0ZM279.79999999999995 0.0Q275.4 0.0 272.75 -2.6500000000000004Q270.09999999999997 -5.300000000000001 270.09999999999997 -9.200000000000001V-42.300000000000004Q270.09999999999997 -46.5 272.59999999999997 -49.400000000000006Q275.09999999999997 -52.300000000000004 279.79999999999995 -52.300000000000004Q284.4 -52.300000000000004 286.79999999999995 -49.400000000000006Q289.2 -46.5 289.2 -42.1V-37.1H291.0Q291.0 -42.800000000000004 293.04999999999995 -46.10000000000001Q295.09999999999997 -49.400000000000006 298.29999999999995 -50.85000000000001Q301.5 -52.300000000000004 304.7 -52.300000000000004Q312.4 -52.300000000000004 316.0 -46.75Q319.59999999999997 -41.2 319.59999999999997 -31.0V-9.200000000000001Q319.59999999999997 -5.300000000000001 317.0 -2.6500000000000004Q314.4 0.0 310.0 0.0Q305.5 0.0 302.85 -2.6500000000000004Q300.2 -5.300000000000001 300.2 -9.200000000000001V-26.900000000000002Q300.2 -30.5 298.85 -32.5Q297.5 -34.5 294.9 -34.5Q291.9 -34.5 290.54999999999995 -32.3Q289.2 -30.1 289.2 -26.700000000000003V-9.200000000000001Q289.2 -5.300000000000001 286.7 -2.6500000000000004Q284.2 0.0 279.79999999999995 0.0ZM338.59999999999997 0.0Q331.2 0.0 327.04999999999995 -4.0Q322.9 -8.0 322.9 -15.200000000000001Q322.9 -22.400000000000002 327.69999999999993 -25.650000000000002Q332.49999999999994 -28.900000000000002 339.99999999999994 -28.900000000000002Q344.4 -28.900000000000002 348.0 -28.300000000000004Q351.59999999999997 -27.700000000000003 354.49999999999994 -26.6H354.79999999999995V-28.1Q354.79999999999995 -30.400000000000002 353.09999999999997 -31.75Q351.4 -33.1 348.79999999999995 -33.0Q346.29999999999995 -33.0 344.54999999999995 -32.7Q342.79999999999995 -32.4 340.2 -31.700000000000003Q335.4 -30.5 331.9 -31.900000000000002Q328.4 -33.300000000000004 327.09999999999997 -37.4Q325.9 -41.7 327.65 -44.6Q329.4 -47.5 332.99999999999994 -49.1Q336.09999999999997 -50.6 339.94999999999993 -51.6Q343.79999999999995 -52.6 348.29999999999995 -52.6Q361.4 -52.6 367.54999999999995 -46.25Q373.7 -39.900000000000006 373.7 -25.0V-9.5Q373.7 -5.4 371.2 -2.7Q368.7 0.0 364.29999999999995 0.0Q359.5 0.0 357.15 -2.7Q354.79999999999995 -5.4 354.79999999999995 -9.3V-11.600000000000001H352.79999999999995Q352.79999999999995 -9.0 351.84999999999997 -6.3Q350.9 -3.6 347.94999999999993 -1.8Q344.99999999999994 0.0 338.59999999999997 0.0ZM339.59999999999997 -21.900000000000002Q339.59999999999997 -20.200000000000003 340.84999999999997 -19.5Q342.09999999999997 -18.8 346.29999999999995 -18.8Q350.09999999999997 -18.8 351.59999999999997 -19.5Q353.09999999999997 -20.200000000000003 353.09999999999997 -21.900000000000002Q353.09999999999997 -23.5 351.59999999999997 -24.15Q350.09999999999997 -24.8 346.29999999999995 -24.8Q342.09999999999997 -24.8 340.84999999999997 -24.15Q339.59999999999997 -23.5 339.59999999999997 -21.900000000000002ZM429.5 0.30000000000000004Q422.8 0.30000000000000004 418.45 -2.3000000000000003Q414.09999999999997 -4.9 411.34999999999997 -9.8Q408.59999999999997 -14.700000000000001 406.4 -21.700000000000003L395.2 -57.6Q393.59999999999997 -62.6 395.45 -66.35000000000001Q397.3 -70.10000000000001 402.09999999999997 -71.5Q406.5 -72.8 410.1 -70.95Q413.7 -69.10000000000001 415.0 -64.7L425.9 -30.1Q427.59999999999997 -24.5 430.25 -22.65Q432.9 -20.8 436.0 -21.8Q439.2 -22.700000000000003 440.1 -25.450000000000003Q441.0 -28.200000000000003 439.6 -33.800000000000004Q437.3 -43.800000000000004 436.5 -49.5Q435.7 -55.2 435.7 -58.5Q435.7 -64.10000000000001 438.75 -68.15Q441.8 -72.2 448.2 -72.2Q454.5 -72.2 457.35 -68.15Q460.2 -64.10000000000001 460.2 -58.5Q460.2 -55.2 459.29999999999995 -51.7Q458.4 -48.2 457.2 -44.5L448.3 -17.6Q446.5 -12.200000000000001 444.35 -8.15Q442.2 -4.1000000000000005 438.75 -1.9000000000000004Q435.3 0.30000000000000004 429.5 0.30000000000000004ZM463.8 -26.0Q463.8 -33.9 466.95000000000005 -39.900000000000006Q470.1 -45.900000000000006 475.95000000000005 -49.300000000000004Q481.8 -52.7 489.9 -52.7Q496.2 -52.7 501.25 -50.400000000000006Q506.3 -48.1 509.20000000000005 -44.25Q512.1 -40.400000000000006 512.1 -35.800000000000004Q512.1 -31.0 509.3 -29.0Q506.5 -27.0 501.0 -27.0H480.0Q480.0 -24.400000000000002 482.05 -22.700000000000003Q484.1 -21.0 489.0 -21.0Q491.5 -21.0 493.65 -21.5Q495.8 -22.0 498.05 -22.450000000000003Q500.3 -22.900000000000002 503.1 -22.900000000000002Q507.1 -22.900000000000002 509.7 -20.05Q512.3 -17.2 512.3 -12.200000000000001Q512.3 -6.300000000000001 506.25 -3.0000000000000004Q500.2 0.30000000000000004 490.4 0.30000000000000004Q483.5 0.30000000000000004 477.45 -2.4000000000000004Q471.4 -5.1000000000000005 467.6 -10.950000000000001Q463.8 -16.8 463.8 -26.0ZM496.2 -30.3Q497.7 -30.3 497.2 -31.700000000000003Q496.8 -33.1 494.8 -34.6Q492.8 -36.1 489.0 -36.1Q484.6 -36.1 482.45000000000005 -34.2Q480.3 -32.300000000000004 480.3 -30.3ZM525.7 0.0Q521.0 0.0 518.4000000000001 -2.7Q515.8000000000001 -5.4 515.8000000000001 -9.5V-42.300000000000004Q515.8000000000001 -46.6 518.4000000000001 -49.45Q521.0 -52.300000000000004 525.7 -52.300000000000004Q530.4 -52.300000000000004 532.9 -49.45Q535.4 -46.6 535.4 -42.5V-40.400000000000006H537.3000000000001Q537.7 -45.7 541.3 -49.1Q544.9 -52.5 549.8000000000001 -52.5Q554.7 -52.5 557.55 -49.5Q560.4 -46.5 560.4 -41.5Q560.4 -36.800000000000004 557.7 -33.7Q555.0 -30.6 550.8000000000001 -30.6Q547.3000000000001 -30.6 544.95 -32.25Q542.6 -33.9 541.5 -36.1Q538.3000000000001 -36.5 536.85 -35.45Q535.4 -34.4 535.4 -31.3V-9.5Q535.4 -5.4 532.9 -2.7Q530.4 0.0 525.7 0.0ZM572.9000000000001 0.0Q568.2 0.0 565.6000000000001 -2.7Q563.0000000000001 -5.4 563.0000000000001 -9.5V-42.300000000000004Q563.0000000000001 -46.6 565.6000000000001 -49.45Q568.2 -52.300000000000004 572.9000000000001 -52.300000000000004Q577.6 -52.300000000000004 580.1 -49.45Q582.6 -46.6 582.6 -42.5V-40.400000000000006H584.5000000000001Q584.9000000000001 -45.7 588.5 -49.1Q592.1 -52.5 597.0000000000001 -52.5Q601.9000000000001 -52.5 604.75 -49.5Q607.6 -46.5 607.6 -41.5Q607.6 -36.800000000000004 604.9000000000001 -33.7Q602.2 -30.6 598.0000000000001 -30.6Q594.5000000000001 -30.6 592.1500000000001 -32.25Q589.8000000000001 -33.9 588.7 -36.1Q585.5000000000001 -36.5 584.0500000000001 -35.45Q582.6 -34.4 582.6 -31.3V-9.5Q582.6 -5.4 580.1 -2.7Q577.6 0.0 572.9000000000001 0.0ZM625.0000000000001 0.0Q617.6000000000001 0.0 613.45 -4.0Q609.3000000000001 -8.0 609.3000000000001 -15.200000000000001Q609.3000000000001 -22.400000000000002 614.1000000000001 -25.650000000000002Q618.9000000000001 -28.900000000000002 626.4000000000001 -28.900000000000002Q630.8000000000001 -28.900000000000002 634.4000000000001 -28.300000000000004Q638.0000000000001 -27.700000000000003 640.9000000000001 -26.6H641.2000000000002V-28.1Q641.2000000000002 -30.400000000000002 639.5000000000001 -31.75Q637.8000000000001 -33.1 635.2000000000002 -33.0Q632.7000000000002 -33.0 630.9500000000002 -32.7Q629.2000000000002 -32.4 626.6000000000001 -31.700000000000003Q621.8000000000001 -30.5 618.3000000000001 -31.900000000000002Q614.8000000000001 -33.300000000000004 613.5000000000001 -37.4Q612.3000000000001 -41.7 614.0500000000001 -44.6Q615.8000000000001 -47.5 619.4000000000001 -49.1Q622.5000000000001 -50.6 626.3500000000001 -51.6Q630.2000000000002 -52.6 634.7000000000002 -52.6Q647.8000000000001 -52.6 653.95 -46.25Q660.1000000000001 -39.900000000000006 660.1000000000001 -25.0V-9.5Q660.1000000000001 -5.4 657.6000000000001 -2.7Q655.1000000000001 0.0 650.7000000000002 0.0Q645.9000000000001 0.0 643.5500000000002 -2.7Q641.2000000000002 -5.4 641.2000000000002 -9.3V-11.600000000000001H639.2000000000002Q639.2000000000002 -9.0 638.2500000000001 -6.3Q637.3000000000001 -3.6 634.3500000000001 -1.8Q631.4000000000001 0.0 625.0000000000001 0.0ZM626.0000000000001 -21.900000000000002Q626.0000000000001 -20.200000000000003 627.2500000000001 -19.5Q628.5000000000001 -18.8 632.7000000000002 -18.8Q636.5000000000001 -18.8 638.0000000000001 -19.5Q639.5000000000001 -20.200000000000003 639.5000000000001 -21.900000000000002Q639.5000000000001 -23.5 638.0000000000001 -24.15Q636.5000000000001 -24.8 632.7000000000002 -24.8Q628.5000000000001 -24.8 627.2500000000001 -24.15Q626.0000000000001 -23.5 626.0000000000001 -21.900000000000002ZM674.0000000000001 0.0Q669.6000000000001 0.0 666.9500000000002 -2.6500000000000004Q664.3000000000002 -5.300000000000001 664.3000000000002 -9.200000000000001V-42.300000000000004Q664.3000000000002 -46.5 666.8000000000002 -49.400000000000006Q669.3000000000002 -52.300000000000004 674.0000000000001 -52.300000000000004Q678.6000000000001 -52.300000000000004 681.0000000000001 -49.400000000000006Q683.4000000000001 -46.5 683.4000000000001 -42.1V-37.1H685.2000000000002Q685.2000000000002 -42.800000000000004 687.2500000000002 -46.10000000000001Q689.3000000000002 -49.400000000000006 692.5000000000002 -50.85000000000001Q695.7000000000002 -52.300000000000004 698.9000000000001 -52.300000000000004Q706.6000000000001 -52.300000000000004 710.2000000000002 -46.75Q713.8000000000002 -41.2 713.8000000000002 -31.0V-9.200000000000001Q713.8000000000002 -5.300000000000001 711.2000000000002 -2.6500000000000004Q708.6000000000001 0.0 704.2000000000002 0.0Q699.7000000000002 0.0 697.0500000000002 -2.6500000000000004Q694.4000000000001 -5.300000000000001 694.4000000000001 -9.200000000000001V-26.900000000000002Q694.4000000000001 -30.5 693.0500000000002 -32.5Q691.7000000000002 -34.5 689.1000000000001 -34.5Q686.1000000000001 -34.5 684.7500000000001 -32.3Q683.4000000000001 -30.1 683.4000000000001 -26.700000000000003V-9.200000000000001Q683.4000000000001 -5.300000000000001 680.9000000000001 -2.6500000000000004Q678.4000000000001 0.0 674.0000000000001 0.0Z"/><g transform="translate(747.30 -27.00) rotate(8) scale(0.4032)"><g class="logo-spin"><path class="logo-star" d="M6 -58 C9 -18 14 -9 54 -7 C15 -3 7 6 -3 60 C-6 13 -12 4 -52 5 C-12 -2 -4 -13 6 -58 Z" stroke-width="5" stroke-linejoin="round"/></g></g></svg><svg class="logo-mobile logo-tap" viewBox="0 0 413 164" width="413" height="164" role="img" aria-label="Carolina Verran" style="overflow:visible"><path class="logo-text" d="M34.3639 76.9951C27.8563 76.9951 21.9962 75.6504 16.7835 72.9611C11.5708 70.2717 7.47041 66.2709 4.48225 60.9586C1.49408 55.6463 0 49.1055 0 41.3363C0 33.5671 1.51068 26.8603 4.53205 21.216C7.55342 15.5717 11.7036 11.2388 16.9827 8.21746C22.2618 5.19609 28.288 3.6854 35.0611 3.6854C42.8968 3.6854 48.9063 4.78107 53.0897 6.97239C57.2732 9.16371 59.3649 12.4175 59.3649 16.7337C59.3649 20.0539 58.4684 22.7931 56.6755 24.9512C54.8826 27.1093 52.4257 28.1884 49.3047 28.1884C46.6486 28.1884 44.0754 27.8397 41.5853 27.1425C39.0952 26.4453 36.19 26.0966 32.8698 26.0966C28.62 26.0966 25.2666 27.3251 22.8097 29.7821C20.3527 32.239 19.1243 35.4596 19.1243 39.4438C19.1243 43.3616 20.3527 46.632 22.8097 49.2549C25.2666 51.8779 28.62 53.1894 32.8698 53.1894C35.1275 53.1894 37.2027 53.0067 39.0952 52.6415C40.9877 52.2763 42.847 51.8945 44.6731 51.4961C46.4992 51.0976 48.4747 50.8984 50.5996 50.8984C54.119 50.8984 56.7087 52.0439 58.3688 54.3348C60.0289 56.6257 60.859 59.4645 60.859 62.8511C60.859 66.2377 59.6305 68.9768 57.1736 71.0685C54.7166 73.1603 51.4795 74.671 47.462 75.6006C43.4446 76.5303 39.0786 76.9951 34.3639 76.9951ZM79.286 76.7959C74.3721 76.7959 70.5373 75.4678 67.7816 72.8116C65.0258 70.1555 63.6479 66.4369 63.6479 61.6558C63.6479 56.8748 65.2416 53.4052 68.429 51.247C71.6164 49.0889 75.7002 48.0099 80.6805 48.0099C83.6022 48.0099 86.2584 48.2091 88.6489 48.6075C91.0395 49.0059 93.1976 49.5704 95.1233 50.3008H95.4221V48.8067C95.4221 47.2794 94.8577 46.0676 93.7288 45.1711C92.5999 44.2747 91.1723 43.8596 89.4458 43.926C87.7857 43.926 86.3746 44.0256 85.2125 44.2249C84.0505 44.4241 82.6062 44.7561 80.8797 45.2209C77.6923 46.0178 74.9366 45.9514 72.6124 45.0217C70.2883 44.092 68.6946 42.2659 67.8314 39.5434C67.0345 36.688 67.2171 34.2975 68.3792 32.3718C69.5413 30.4461 71.3176 28.952 73.7081 27.8895C75.7666 26.8935 78.0741 26.0634 80.6307 25.3994C83.1872 24.7354 85.9596 24.4034 88.9477 24.4034C97.6466 24.4034 104.038 26.5117 108.122 30.7283C112.206 34.9449 114.248 42.0003 114.248 51.8945V67.3333C114.248 70.0559 113.417 72.3136 111.757 74.1065C110.097 75.8994 107.806 76.7959 104.885 76.7959C101.697 76.7959 99.3233 75.8994 97.7628 74.1065C96.2023 72.3136 95.4221 70.1223 95.4221 67.5325V65.2416H93.43C93.43 66.9681 93.1146 68.7278 92.4837 70.5207C91.8529 72.3136 90.558 73.8077 88.5991 75.003C86.6402 76.1982 83.5358 76.7959 79.286 76.7959ZM80.2821 54.9823C80.2821 56.1111 80.6971 56.908 81.5271 57.3728C82.3572 57.8376 84.1667 58.07 86.9556 58.07C89.479 58.07 91.2387 57.8376 92.2347 57.3728C93.2308 56.908 93.7288 56.1111 93.7288 54.9823C93.7288 53.9198 93.2308 53.1728 92.2347 52.7411C91.2387 52.3095 89.479 52.0937 86.9556 52.0937C84.1667 52.0937 82.3572 52.3095 81.5271 52.7411C80.6971 53.1728 80.2821 53.9198 80.2821 54.9823ZM128.292 76.7959C125.171 76.7959 122.747 75.8994 121.021 74.1065C119.294 72.3136 118.431 70.0559 118.431 67.3333V34.6627C118.431 31.8074 119.294 29.4334 121.021 27.5409C122.747 25.6484 125.171 24.7022 128.292 24.7022C131.413 24.7022 133.803 25.6484 135.464 27.5409C137.124 29.4334 137.954 31.741 137.954 34.4635V36.5552H139.846C140.112 33.0358 141.44 30.1473 143.83 27.8895C146.221 25.6318 149.043 24.503 152.297 24.503C155.551 24.503 158.124 25.499 160.016 27.4911C161.909 29.4832 162.855 32.1394 162.855 35.4596C162.855 38.5805 161.959 41.1703 160.166 43.2288C158.373 45.2873 156.082 46.3166 153.293 46.3166C150.969 46.3166 149.026 45.7687 147.466 44.6731C145.905 43.5774 144.76 42.2991 144.03 40.8383C141.905 40.5727 140.361 40.7885 139.398 41.4857C138.435 42.1829 137.954 43.5608 137.954 45.6193V67.3333C137.954 70.0559 137.124 72.3136 135.464 74.1065C133.803 75.8994 131.413 76.7959 128.292 76.7959ZM190.545 76.9951C182.776 76.9951 176.584 74.6875 171.969 70.0725C167.354 65.4574 165.046 58.9333 165.046 50.5C165.046 45.3205 166.109 40.7719 168.234 36.854C170.359 32.9362 173.33 29.8651 177.148 27.6405C180.967 25.416 185.432 24.3037 190.545 24.3037C196.256 24.3037 201.004 25.416 204.789 27.6405C208.574 29.8651 211.413 32.9362 213.305 36.854C215.198 40.7719 216.144 45.3205 216.144 50.5C216.144 58.9333 214.036 65.4574 209.819 70.0725C205.602 74.6875 199.178 76.9951 190.545 76.9951ZM176.899 48.8067C176.899 50.8652 177.929 52.3095 179.987 53.1395C182.046 53.9696 185.565 54.3846 190.545 54.3846C195.526 54.3846 199.045 53.9696 201.104 53.1395C203.162 52.3095 204.191 50.8652 204.191 48.8067C204.191 46.8146 203.162 45.4201 201.104 44.6233C199.045 43.8264 195.526 43.428 190.545 43.428C185.565 43.428 182.046 43.8264 179.987 44.6233C177.929 45.4201 176.899 46.8146 176.899 48.8067ZM229.392 76.7959C226.138 76.7959 223.697 75.9326 222.071 74.2061C220.444 72.4796 219.63 70.3215 219.63 67.7318V9.96055C219.63 7.1052 220.444 4.73126 222.071 2.83876C223.697 0.946251 226.138 0 229.392 0C232.313 0 234.571 0.946251 236.165 2.83876C237.758 4.73126 238.555 7.03879 238.555 9.76134V67.7318C238.555 70.3215 237.758 72.4796 236.165 74.2061C234.571 75.9326 232.313 76.7959 229.392 76.7959ZM242.141 13.1479C242.141 10.2926 243.021 7.98504 244.781 6.22535C246.54 4.46565 248.981 3.5858 252.102 3.5858C255.422 3.5858 257.895 4.44904 259.522 6.17554C261.149 7.90204 261.963 10.193 261.963 13.0483C261.963 15.8373 261.149 18.0784 259.522 19.7717C257.895 21.465 255.422 22.3116 252.102 22.3116C248.848 22.3116 246.374 21.465 244.681 19.7717C242.988 18.0784 242.141 15.8705 242.141 13.1479ZM252.102 76.7959C248.981 76.7959 246.656 75.9326 245.129 74.2061C243.602 72.4796 242.838 70.3215 242.838 67.7318V33.6667C242.838 30.8113 243.602 28.5536 245.129 26.8935C246.656 25.2334 248.981 24.4034 252.102 24.4034C255.223 24.4034 257.563 25.2334 259.124 26.8935C260.684 28.5536 261.465 30.7449 261.465 33.4675V67.7318C261.465 70.3215 260.651 72.4796 259.024 74.2061C257.397 75.9326 255.09 76.7959 252.102 76.7959ZM275.608 76.7959C272.687 76.7959 270.346 75.916 268.586 74.1563C266.827 72.3966 265.947 70.2219 265.947 67.6322V34.6627C265.947 31.8738 266.777 29.5164 268.437 27.5907C270.097 25.665 272.487 24.7022 275.608 24.7022C278.663 24.7022 280.987 25.665 282.581 27.5907C284.175 29.5164 284.971 31.9402 284.971 34.8619V39.8422H286.764C286.764 36.0572 287.445 33.069 288.806 30.8777C290.167 28.6864 291.911 27.1093 294.035 26.1465C296.16 25.1836 298.285 24.7022 300.41 24.7022C305.523 24.7022 309.275 26.5449 311.666 30.2303C314.056 33.9157 315.251 39.145 315.251 45.9181V67.6322C315.251 70.2219 314.388 72.3966 312.662 74.1563C310.935 75.916 308.611 76.7959 305.689 76.7959C302.701 76.7959 300.327 75.916 298.568 74.1563C296.808 72.3966 295.928 70.2219 295.928 67.6322V50.002C295.928 47.6114 295.48 45.7521 294.583 44.4241C293.687 43.096 292.375 42.432 290.649 42.432C288.657 42.432 287.213 43.1624 286.316 44.6233C285.42 46.0842 284.971 47.9435 284.971 50.2012V67.6322C284.971 70.2219 284.141 72.3966 282.481 74.1563C280.821 75.916 278.53 76.7959 275.608 76.7959ZM334.177 76.7959C329.263 76.7959 325.428 75.4678 322.672 72.8116C319.916 70.1555 318.538 66.4369 318.538 61.6558C318.538 56.8748 320.132 53.4052 323.32 51.247C326.507 49.0889 330.591 48.0099 335.571 48.0099C338.493 48.0099 341.149 48.2091 343.539 48.6075C345.93 49.0059 348.088 49.5704 350.014 50.3008H350.313V48.8067C350.313 47.2794 349.748 46.0676 348.619 45.1711C347.49 44.2747 346.063 43.8596 344.336 43.926C342.676 43.926 341.265 44.0256 340.103 44.2249C338.941 44.4241 337.497 44.7561 335.77 45.2209C332.583 46.0178 329.827 45.9514 327.503 45.0217C325.179 44.092 323.585 42.2659 322.722 39.5434C321.925 36.688 322.108 34.2975 323.27 32.3718C324.432 30.4461 326.208 28.952 328.599 27.8895C330.657 26.8935 332.965 26.0634 335.521 25.3994C338.078 24.7354 340.85 24.4034 343.838 24.4034C352.537 24.4034 358.928 26.5117 363.012 30.7283C367.096 34.9449 369.138 42.0003 369.138 51.8945V67.3333C369.138 70.0559 368.308 72.3136 366.648 74.1065C364.988 75.8994 362.697 76.7959 359.775 76.7959C356.588 76.7959 354.214 75.8994 352.653 74.1065C351.093 72.3136 350.313 70.1223 350.313 67.5325V65.2416H348.32C348.32 66.9681 348.005 68.7278 347.374 70.5207C346.743 72.3136 345.449 73.8077 343.49 75.003C341.531 76.1982 338.426 76.7959 334.177 76.7959ZM335.173 54.9823C335.173 56.1111 335.588 56.908 336.418 57.3728C337.248 57.8376 339.057 58.07 341.846 58.07C344.369 58.07 346.129 57.8376 347.125 57.3728C348.121 56.908 348.619 56.1111 348.619 54.9823C348.619 53.9198 348.121 53.1728 347.125 52.7411C346.129 52.3095 344.369 52.0937 341.846 52.0937C339.057 52.0937 337.248 52.3095 336.418 52.7411C335.588 53.1728 335.173 53.9198 335.173 54.9823Z"/><path class="logo-text" d="M118.48 160.672C121.369 162.398 125.038 163.261 129.487 163.261C133.338 163.261 136.409 162.531 138.7 161.07C140.991 159.609 142.85 157.534 144.278 154.845C145.706 152.155 147.017 149.018 148.212 145.432L157.077 118.638C157.874 116.181 158.571 113.791 159.169 111.466C159.767 109.142 160.065 106.885 160.065 104.693C160.065 100.975 159.119 97.7707 157.227 95.0814C155.334 92.392 152.296 91.0474 148.113 91.0474C143.863 91.0474 140.725 92.392 138.7 95.0814C136.675 97.7707 135.662 100.975 135.662 104.693C135.662 106.885 135.928 109.873 136.459 113.658C136.99 117.443 138.019 122.656 139.547 129.296C140.476 133.014 140.642 135.787 140.045 137.613C139.447 139.439 138.086 140.651 135.961 141.249C133.902 141.913 131.993 141.63 130.234 140.402C128.474 139.173 127.03 136.7 125.901 132.981L115.044 98.5178C114.181 95.596 112.554 93.5209 110.163 92.2924C107.773 91.064 105.116 90.8814 102.195 91.7446C99.0073 92.6743 96.7994 94.3841 95.5709 96.8743C94.3424 99.3644 94.2594 102.27 95.3219 105.59L106.478 141.348C107.939 145.996 109.582 149.947 111.408 153.201C113.234 156.455 115.592 158.945 118.48 160.672Z"/><path class="logo-text" d="M166.789 123.22C164.697 127.204 163.651 131.819 163.651 137.065C163.651 143.174 164.913 148.171 167.436 152.056C169.96 155.94 173.23 158.779 177.247 160.572C181.265 162.365 185.564 163.261 190.146 163.261C196.654 163.261 201.916 162.166 205.934 159.974C209.951 157.783 211.96 154.728 211.96 150.811C211.96 147.49 211.097 144.884 209.37 142.992C207.644 141.099 205.452 140.153 202.796 140.153C200.937 140.153 199.26 140.302 197.766 140.601C196.272 140.9 194.811 141.215 193.384 141.547C191.956 141.879 190.412 142.045 188.752 142.045C185.498 142.045 183.191 141.481 181.829 140.352C180.468 139.223 179.787 137.796 179.787 136.069H200.705C204.357 136.069 207.112 135.405 208.972 134.077C210.831 132.749 211.761 130.491 211.761 127.304C211.761 124.249 210.798 121.444 208.872 118.887C206.946 116.331 204.307 114.289 200.954 112.761C197.6 111.234 193.832 110.47 189.648 110.47C184.27 110.47 179.638 111.599 175.753 113.857C171.869 116.115 168.881 119.236 166.789 123.22Z"/><path class="logo-text" d="M218.036 160.273C219.762 162.066 222.186 162.963 225.307 162.963C228.428 162.963 230.819 162.066 232.479 160.273C234.139 158.48 234.969 156.223 234.969 153.5V131.786C234.969 129.728 235.45 128.35 236.413 127.652C237.376 126.955 238.92 126.739 241.045 127.005C241.775 128.466 242.921 129.744 244.481 130.84C246.042 131.935 247.984 132.483 250.308 132.483C253.097 132.483 255.388 131.454 257.181 129.395C258.974 127.337 259.87 124.747 259.87 121.626C259.87 118.306 258.924 115.65 257.031 113.658C255.139 111.666 252.566 110.67 249.312 110.67C246.058 110.67 243.236 111.799 240.846 114.056C238.455 116.314 237.127 119.203 236.861 122.722H234.969V120.63C234.969 117.908 234.139 115.6 232.479 113.708C230.819 111.815 228.428 110.869 225.307 110.869C222.186 110.869 219.762 111.815 218.036 113.708C216.309 115.6 215.446 117.974 215.446 120.829V153.5C215.446 156.223 216.309 158.48 218.036 160.273Z"/><path class="logo-text" d="M265.05 160.273C266.776 162.066 269.2 162.963 272.321 162.963C275.442 162.963 277.832 162.066 279.492 160.273C281.153 158.48 281.983 156.223 281.983 153.5V131.786C281.983 129.728 282.464 128.35 283.427 127.652C284.39 126.955 285.934 126.739 288.059 127.005C288.789 128.466 289.935 129.744 291.495 130.84C293.055 131.935 294.998 132.483 297.322 132.483C300.111 132.483 302.402 131.454 304.195 129.395C305.988 127.337 306.884 124.747 306.884 121.626C306.884 118.306 305.938 115.65 304.045 113.658C302.153 111.666 299.58 110.67 296.326 110.67C293.072 110.67 290.25 111.799 287.859 114.056C285.469 116.314 284.141 119.203 283.875 122.722H281.983V120.63C281.983 117.908 281.153 115.6 279.492 113.708C277.832 111.815 275.442 110.869 272.321 110.869C269.2 110.869 266.776 111.815 265.05 113.708C263.323 115.6 262.46 117.974 262.46 120.829V153.5C262.46 156.223 263.323 158.48 265.05 160.273Z"/><path class="logo-text" d="M312.711 158.978C315.467 161.634 319.302 162.963 324.215 162.963C328.465 162.963 331.57 162.365 333.529 161.17C335.487 159.974 336.782 158.48 337.413 156.687C338.044 154.895 338.359 153.135 338.359 151.408H340.352V153.699C340.352 156.289 341.132 158.48 342.692 160.273C344.253 162.066 346.627 162.963 349.814 162.963C352.736 162.963 355.027 162.066 356.687 160.273C358.347 158.48 359.177 156.223 359.177 153.5V138.061C359.177 128.167 357.135 121.112 353.051 116.895C348.967 112.678 342.576 110.57 333.877 110.57C330.889 110.57 328.117 110.902 325.56 111.566C323.004 112.23 320.696 113.06 318.638 114.056C316.247 115.119 314.471 116.613 313.309 118.538C312.147 120.464 311.964 122.855 312.761 125.71C313.624 128.433 315.218 130.259 317.542 131.188C319.866 132.118 322.622 132.184 325.809 131.388C327.536 130.923 328.98 130.591 330.142 130.392C331.304 130.192 332.715 130.093 334.375 130.093C336.102 130.026 337.529 130.441 338.658 131.338C339.787 132.234 340.352 133.446 340.352 134.973V136.467H340.053C338.127 135.737 335.969 135.173 333.578 134.774C331.188 134.376 328.532 134.177 325.61 134.177C320.63 134.177 316.546 135.256 313.358 137.414C310.171 139.572 308.577 143.041 308.577 147.823C308.577 152.604 309.955 156.322 312.711 158.978Z"/><path class="logo-text" d="M366 160.323C367.76 162.083 370.1 162.963 373.022 162.963C375.944 162.963 378.235 162.083 379.895 160.323C381.555 158.563 382.385 156.389 382.385 153.799V136.368C382.385 134.11 382.833 132.251 383.73 130.79C384.626 129.329 386.07 128.599 388.062 128.599C389.789 128.599 391.1 129.263 391.997 130.591C392.893 131.919 393.342 133.778 393.342 136.169V153.799C393.342 156.389 394.221 158.563 395.981 160.323C397.741 162.083 400.115 162.963 403.103 162.963C406.025 162.963 408.349 162.083 410.075 160.323C411.802 158.563 412.665 156.389 412.665 153.799V132.085C412.665 125.312 411.47 120.082 409.079 116.397C406.689 112.712 402.937 110.869 397.824 110.869C395.699 110.869 393.574 111.35 391.449 112.313C389.324 113.276 387.581 114.853 386.22 117.044C384.859 119.236 384.178 122.224 384.178 126.009H382.385V121.029C382.385 118.107 381.588 115.683 379.995 113.757C378.401 111.832 376.077 110.869 373.022 110.869C369.901 110.869 367.511 111.832 365.85 113.757C364.19 115.683 363.36 118.04 363.36 120.829V153.799C363.36 156.389 364.24 158.563 366 160.323Z"/><g class="logo-spin"><path class="logo-star" d="M44.2449 113.289C43.2023 129.365 44.6877 133.224 60.484 136.255C44.7501 135.666 41.0654 138.798 34.0702 159.715C35.504 140.855 33.6209 136.941 17.6569 135.103C33.9562 134.554 37.7527 130.627 44.2449 113.289Z" stroke-width="2" stroke-linejoin="round"/></g></svg></span></h1>
+      </div>
+      <div class="fan" id="fan" role="group" aria-label="Prévia dos projetos. Selecione um para ver o resumo." data-i18n-aria="fanAria"></div>
+    </div>
+    <div class="band">
+      <div class="wrap band-inner">
+        <div class="marquee" aria-label="Marcas" data-i18n-aria="brands">
+          <div class="marquee-track" id="brands"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 2. PROJETOS RECENTES ============ -->
+  <section class="projects" id="projetos" aria-labelledby="projects-title">
+    <div class="wrap">
+      <div class="panel">
+        <div class="section-head">
+          <div>
+            <h2 class="h2" id="projects-title" data-i18n-html="projectsTitle">Projetos<br>recentes<span class="dot">.</span></h2>
+          </div>
+          <p class="section-lead" data-i18n="projectsLead">Uma seleção de projetos em que atuei da pesquisa à interface. Nos cases corporativos, as imagens são ilustrativas e as marcas e dados foram alterados por confidencialidade.</p>
+        </div>
+        <div class="grid" id="grid"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 3. SOBRE MIM ============ -->
+  <section class="about" id="sobre" aria-labelledby="about-title">
+    <div class="wrap about-grid">
+      <figure class="portrait reveal" id="portrait">
+        <div class="portrait-stack">
+          <div class="portrait-frame">
+            <img src="img/p/carolina-perfil.webp" alt="Retrato de Carolina Verran Hübler." data-i18n-alt="portraitAlt" width="278" height="278">
+          </div>
+        </div>
+      </figure>
+
+      <div class="about-copy">
+        <div>
+          <h2 class="h2" id="about-title" data-i18n-html="aboutTitle">Movida pela curiosidade de entender pessoas, contextos e decisões<span class="dot">.</span></h2>
+        </div>
+
+        <div>
+          <div class="tabs" role="tablist" aria-label="Sobre mim" data-i18n-aria="aboutMe">
+            <button class="tab" role="tab" id="tab-perfil" aria-controls="panel-perfil" aria-selected="true" data-i18n="tabProfile">Perfil</button>
+            <button class="tab" role="tab" id="tab-exp" aria-controls="panel-exp" aria-selected="false" tabindex="-1" data-i18n="tabExp">Experiência</button>
+            <button class="tab" role="tab" id="tab-edu" aria-controls="panel-edu" aria-selected="false" tabindex="-1" data-i18n="tabEdu">Formação</button>
+          </div>
+        </div>
+
+        <div class="tabpanel" role="tabpanel" id="panel-perfil" aria-labelledby="tab-perfil" tabindex="0">
+          <p class="bio" data-i18n="bio">Antes de desenhar qualquer coisa, busco entender o contexto do problema para que cada decisão tenha embasamento em dados reais. Valorizo a estrutura e a padronização. Afinal, produto bom depende de coerência e escala.</p>
+          <div class="facts">
+            <div class="fact"><b data-i18n="fact1">4 anos</b><span data-i18n="fact1s">de experiência</span></div>
+            <div class="fact"><b>+20</b><span data-i18n="fact2s">produtos digitais</span></div>
+            <div class="fact"><b>+2M</b><span data-i18n="fact3s">de usuários ativos</span></div>
+          </div>
+        </div>
+        <div class="tabpanel" role="tabpanel" id="panel-exp" aria-labelledby="tab-exp" tabindex="0" hidden>
+          <ol class="timeline" id="exp-list"></ol>
+        </div>
+        <div class="tabpanel" role="tabpanel" id="panel-edu" aria-labelledby="tab-edu" tabindex="0" hidden>
+          <ol class="timeline" id="edu-list"></ol>
+        </div>
+
+        <div class="about-cta">
+          <button class="btn btn--plain" type="button" id="about-cv" data-i18n="viewCv">Ver currículo</button>
+          <a class="btn btn--line btn--plain" href="#contato" data-i18n="navContact">Contato</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 4. O QUE EU FAÇO ============ -->
+  <section class="services" id="servicos" aria-labelledby="services-title">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <h2 class="h2" id="services-title" data-i18n-html="servicesTitle">Áreas de atuação<span class="dot">.</span></h2>
+        </div>
+      </div>
+      <ul class="svc-list" id="svc-list"></ul>
+    </div>
+  </section>
+
+  <!-- ============ 5. CONTATO ============ -->
+  <section class="contact" id="contato" aria-labelledby="contact-title">
+    <div class="wrap"><div class="contact-card">
+      <h2 class="contact-title" id="contact-title">
+        <span><span data-i18n="contactTitle">Vamos trabalhar juntos</span><span class="q" data-i18n="contactQ">?</span></span>
+        <svg class="contact-star" viewBox="-62 -66 124 132" aria-hidden="true"><path d="M6 -58 C9 -18 14 -9 54 -7 C15 -3 7 6 -3 60 C-6 13 -12 4 -52 5 C-12 -2 -4 -13 6 -58 Z" fill="var(--red)" stroke="var(--red)" stroke-width="5" stroke-linejoin="round"/></svg>
+      </h2>
+      <ul class="channels" id="channels"></ul>
+    </div></div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-row">
+    <span>© 2026 | Design by Carolina Verran Hübler.</span>
+    <nav aria-label="Rodapé" data-i18n-aria="navFooter"><a href="#projetos" data-i18n="navProjects">Projetos</a><a href="#sobre" data-i18n="navAbout">Sobre</a><a href="#servicos" data-i18n="navServices">Atuação</a><a href="#contato" data-i18n="navContact">Contato</a></nav>
+    <a class="to-top" href="#inicio"><span data-i18n="toTop">Voltar ao topo</span> <svg class="icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 13V3M4 7l4-4 4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </div>
+  <div class="wordmark" aria-hidden="true"><img src="img/logo-carolina-verran-vermelho.svg" alt="" width="793" height="101"></div>
+</footer>
+
+<!-- ============ MODAL DE PROJETO ============ -->
+<dialog class="modal" id="project-modal" aria-labelledby="modal-title">
+  <div class="modal-shell">
+    <div class="modal-media" id="modal-media"></div>
+    <div class="modal-body">
+      <div class="modal-bar">
+        <span class="mono" id="modal-count" style="color:var(--ink-3)"></span>
+        <div class="ctrls">
+          <button class="round" type="button" id="modal-prev" aria-label="Projeto anterior" data-i18n-aria="prev"><svg class="icon" viewBox="0 0 16 16"><path d="M10 3L5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <button class="round" type="button" id="modal-next" aria-label="Próximo projeto" data-i18n-aria="next"><svg class="icon" viewBox="0 0 16 16"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <button class="round close" type="button" id="modal-close" aria-label="Fechar" data-i18n-aria="close"><svg class="icon" viewBox="0 0 16 16"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+        </div>
+      </div>
+      <div>
+        <span class="mono eyebrow" id="modal-client"></span>
+        <h2 id="modal-title"></h2>
+      </div>
+      <dl class="modal-dl" id="modal-dl"></dl>
+    </div>
+  </div>
+</dialog>
+
+<!-- ============ CURRÍCULO ============ -->
+<dialog class="cv-dialog" id="cv-dialog" aria-labelledby="cv-title">
+  <div class="cv-bar">
+    <span class="mono eyebrow" data-i18n="cv">Currículo</span>
+    <div class="cv-actions">
+      <a class="btn btn--line btn--small btn--plain" id="cv-pdf" href="curriculo-carolina-verran.pdf" target="_blank" rel="noopener" data-i18n="openPdf">Abrir PDF</a>
+      <button class="round close" type="button" id="cv-close" aria-label="Fechar currículo" data-i18n-aria="closeCv"><svg class="icon" viewBox="0 0 16 16"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+    </div>
+  </div>
+  <article class="cv-doc" data-lang="pt">
+    <header>
+      <h2 id="cv-title">Carolina Verran Hübler</h2>
+      <p class="cv-meta">Porto Alegre - RS · +55 (51) 98954-4994 · ccverran@gmail.com</p>
+    </header>
+    <section>
+      <h3>Sobre mim</h3>
+      <p>Product Designer com 4 anos de experiência em produtos digitais e 6 anos de atuação profissional. Experiência em discovery, arquitetura da informação, design systems, prototipação e evolução de produtos web e mobile. Atuo no desenvolvimento de soluções para plataformas de alta complexidade no mercado financeiro, colaborando com equipes multidisciplinares desde a definição da solução até sua implementação.</p>
+    </section>
+    <section>
+      <h3>Experiência</h3>
+      <div class="cv-job">
+        <h4>Nelogica — UX/UI Designer</h4>
+        <p class="cv-when">Fev/2024 — Atual · Fintech referência no setor de investimentos</p>
+        <p>Atuo no desenvolvimento de produtos web e mobile para o mercado financeiro, colaborando com Product Managers, desenvolvedores e stakeholders na evolução de soluções escaláveis, acessíveis e alinhadas às necessidades do negócio.</p>
+        <ul>
+          <li>Responsável pelo design de ponta a ponta de uma plataforma internacional de investimentos, acompanhando o alinhamento com desenvolvimento até o lançamento do produto.</li>
+          <li>Estruturei e documentei um Design System para sistemas internos (intranet e extranet), promovendo maior consistência visual e eficiência nas entregas.</li>
+          <li>Desenvolvi portais web personalizados para corretoras, conciliando requisitos de negócio com boas práticas de usabilidade e consistência da interface.</li>
+          <li>Evoluí a experiência dos aplicativos Profit e HUB3 por meio de melhorias contínuas na interface e nos fluxos de navegação.</li>
+          <li>Atuei na evolução contínua da Nelostore, desenvolvendo interfaces e layouts para iniciativas institucionais e comerciais.</li>
+        </ul>
+      </div>
+      <div class="cv-job">
+        <h4>DEx01 — Product Designer</h4>
+        <p class="cv-when">Dez/2022 — Fev/2024 · Consultoria de CX — Solution Company</p>
+        <p>Atuei em projetos para fintechs, bancos e plataformas digitais, participando de atividades de discovery, pesquisa, validação de hipóteses e definição de soluções centradas no usuário.</p>
+        <ul>
+          <li>Reestruturei a arquitetura da informação e os fluxos de navegação dos canais digitais de um banco digital, contribuindo para uma experiência mais integrada entre as plataformas.</li>
+          <li>Estruturação e documentação do Design System de uma instituição financeira, contribuindo para maior padronização e eficiência nas entregas.</li>
+          <li>Realizei pesquisas e testes de usabilidade em uma plataforma de recrutamento por competências para identificar oportunidades de melhoria e orientar a evolução da experiência do usuário.</li>
+        </ul>
+      </div>
+    </section>
+    <section>
+      <h3>Experiências anteriores</h3>
+      <p>Antes de atuar com produtos digitais, trabalhei nas áreas de Marketing, Social Media, Content Writing e Account Management. Nesse período, desenvolvi estratégias de comunicação, produzi conteúdo para diferentes canais, elaborei briefings, acompanhei campanhas, organizei eventos e atuei no relacionamento com clientes.</p>
+    </section>
+    <section class="cv-cols">
+      <div>
+        <h3>Ferramentas</h3>
+        <ul>
+          <li>Figma</li><li>Adobe Photoshop</li><li>Adobe Illustrator</li><li>Figma Make</li><li>HTML e CSS (Básico)</li>
+          <li>IA Generativa (ChatGPT, Claude, Gemini, Microsoft Copilot)</li>
+          <li>Gestão de Projetos (Jira, Confluence, Slack, Miro)</li>
+          <li>Analytics (Microsoft Clarity, Hotjar, Google Analytics)</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Idioma</h3>
+        <p><b>Inglês</b><br>Avançado (leitura e escrita); Intermediário (conversação)</p>
+        <h3>Formação</h3>
+        <p><b>User Experience Design and Beyond — PUCRS</b><br>Jul/2025 — Atual · Pós-graduação</p>
+        <p><b>Publicidade e Propaganda — PUCRS</b><br>Jan/2019 — Dez/2023 · Graduação</p>
+      </div>
+    </section>
+  </article>
+  <article class="cv-doc" data-lang="en" lang="en" hidden>
+    <header>
+      <h2>Carolina Verran Hübler</h2>
+      <p class="cv-meta">Porto Alegre, Brazil · +55 (51) 98954-4994 · ccverran@gmail.com</p>
+    </header>
+    <section>
+      <h3>About me</h3>
+      <p>Product Designer with 4 years of experience in digital products and 6 years of professional experience. Experienced in discovery, information architecture, design systems, prototyping and the evolution of web and mobile products. I build solutions for highly complex platforms in the financial market, collaborating with multidisciplinary teams from defining the solution through to its implementation.</p>
+    </section>
+    <section>
+      <h3>Experience</h3>
+      <div class="cv-job">
+        <h4>Nelogica — UX/UI Designer</h4>
+        <p class="cv-when">Feb/2024 — Present · Leading fintech in the investment sector</p>
+        <p>I design web and mobile products for the financial market, collaborating with Product Managers, developers and stakeholders to evolve scalable, accessible solutions aligned with business needs.</p>
+        <ul>
+          <li>Responsible for the end-to-end design of an international investment platform, working alongside development through to the product launch.</li>
+          <li>Structured and documented a Design System for internal systems (intranet and extranet), bringing greater visual consistency and delivery efficiency.</li>
+          <li>Designed custom web portals for brokerages, balancing business requirements with usability best practices and interface consistency.</li>
+          <li>Evolved the experience of the Profit and HUB3 apps through continuous improvements to the interface and navigation flows.</li>
+          <li>Contributed to the continuous evolution of Nelostore, designing interfaces and layouts for institutional and commercial initiatives.</li>
+        </ul>
+      </div>
+      <div class="cv-job">
+        <h4>DEx01 — Product Designer</h4>
+        <p class="cv-when">Dec/2022 — Feb/2024 · CX Consultancy — Solution Company</p>
+        <p>I worked on projects for fintechs, banks and digital platforms, taking part in discovery, research, hypothesis validation and the definition of user-centered solutions.</p>
+        <ul>
+          <li>Restructured the information architecture and navigation flows of a digital bank's channels, contributing to a more integrated experience across platforms.</li>
+          <li>Structured and documented a financial institution's Design System, contributing to greater standardization and delivery efficiency.</li>
+          <li>Ran research and usability tests on a skills-based recruitment platform to identify improvement opportunities and guide the evolution of the user experience.</li>
+        </ul>
+      </div>
+    </section>
+    <section>
+      <h3>Previous experience</h3>
+      <p>Before working with digital products, I worked in Marketing, Social Media, Content Writing and Account Management. During that time, I developed communication strategies, produced content for different channels, wrote briefs, followed campaigns, organized events and managed client relationships.</p>
+    </section>
+    <section class="cv-cols">
+      <div>
+        <h3>Tools</h3>
+        <ul>
+          <li>Figma</li><li>Adobe Photoshop</li><li>Adobe Illustrator</li><li>Figma Make</li><li>HTML and CSS (Basic)</li>
+          <li>Generative AI (ChatGPT, Claude, Gemini, Microsoft Copilot)</li>
+          <li>Project Management (Jira, Confluence, Slack, Miro)</li>
+          <li>Analytics (Microsoft Clarity, Hotjar, Google Analytics)</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Language</h3>
+        <p><b>English</b><br>Advanced (reading and writing); Intermediate (conversation)</p>
+        <h3>Education</h3>
+        <p><b>User Experience Design and Beyond — PUCRS</b><br>Jul/2025 — Present · Postgraduate degree</p>
+        <p><b>Advertising — PUCRS</b><br>Jan/2019 — Dec/2023 · Bachelor's degree</p>
+      </div>
+    </section>
+  </article>
+</dialog>
+
+<script>
+/* =====================================================================
+   CONTEÚDO — edite aqui. Tudo na página é gerado a partir destes dados.
+   Fonte: Figma "Carolina Verran" (portfólio atual).
+   ===================================================================== */
+/* Textos com duas versões usam { pt: "...", en: "..." }; os demais valem para os dois idiomas. */
+const PROJECTS = [
+  {
+    id: "prop-trading", title: "Trading Dashboard", type: { pt: "App Web", en: "Web App" }, year: "2026", org: "",
+    pitch: { pt: "Plataforma de trading em que usuários acompanham metas, desempenho e evolução das suas operações em um só lugar.",
+             en: "A trading platform where users track goals, performance and the progress of their trades in one place." },
+    category: "Product Strategy",
+    desc: { pt: "Estruturar do zero a experiência de uma plataforma de trading, organizando informações complexas de desempenho de forma clara e acionável.",
+            en: "Structure the experience of a trading platform from scratch, organizing complex performance data in a clear, actionable way." },
+    done: { pt: ["Pesquisa de mercado e benchmarking", "Estruturação de fluxos de navegação", "Content Design", "Prototipação das interfaces", "Testes de usabilidade"],
+            en: ["Market research and benchmarking", "Navigation flow structure", "Content Design", "Interface prototyping", "Usability testing"] },
+    img: "img/p/prop-trading.webp", illustrative: true, stage: "ink",
+    alt: { pt: "Visão geral da conta da plataforma de trading nos modos escuro e claro, com o card de eficiência de trades em destaque.",
+           en: "Account overview of the trading platform in dark and light mode, highlighting the trade efficiency card." }
+  },
+  {
+    id: "oraculum", title: "Oraculum", type: { pt: "App Mobile", en: "Mobile App" }, year: "2026", org: "PUCRS",
+    pitch: { pt: "App de diário de sonhos que transforma o registro matinal em um ritual leve, com emoções, ilustrações e recompensas.",
+             en: "A dream journal app that turns the morning log into a light ritual, with emotions, illustrations and rewards." },
+    category: "UX Research",
+    desc: { pt: "Facilitar o registro de sonhos logo após o despertar, considerando a baixa energia cognitiva e o rápido esquecimento das experiências.",
+            en: "Make it easy to record dreams right after waking up, accounting for low cognitive energy and how quickly dreams are forgotten." },
+    done: { pt: ["Pesquisa exploratória", "Análise do contexto de uso", "Definição de requisitos de experiência", "Design de interação e prototipação de alta fidelidade"],
+            en: ["Exploratory research", "Context of use analysis", "Experience requirements definition", "Interaction design and high-fidelity prototyping"] },
+    img: "img/p/oraculum.webp?v=2", stage: "ink",
+    alt: { pt: "Dois iPhones com as telas do Oraculum, escolha do sentimento do sonho e jornada pelo inconsciente, sobre um leque de ilustrações dos estados emocionais.",
+           en: "Two iPhones showing Oraculum screens, choosing the dream's feeling and a journey through the unconscious, over a fan of emotional state illustrations." }
+  },
+  {
+    id: "homebroker-whitelabel", title: "Homebroker Whitelabel", type: { pt: "App Web", en: "Web App" }, year: "2026", org: "",
+    pitch: { pt: "Plataforma de negociação whitelabel que cada corretora adapta com a própria marca, mantendo uma experiência consistente.",
+             en: "A whitelabel trading platform that each brokerage adapts with its own brand while keeping a consistent experience." },
+    category: "Product Strategy",
+    desc: { pt: "Adaptar uma plataforma de negociação a um novo contexto de mercado, revisando fluxos e funcionalidades para atender a diferentes perfis de investidores.",
+            en: "Adapt a trading platform to a new market context, revisiting flows and features to serve different investor profiles." },
+    done: { pt: ["Pesquisa de mercado e benchmarking", "Redefinição dos fluxos de navegação", "Content Design", "Prototipação das interfaces", "Testes de usabilidade"],
+            en: ["Market research and benchmarking", "Navigation flow redesign", "Content Design", "Interface prototyping", "Usability testing"] },
+    img: "img/p/homebroker-whitelabel.webp", illustrative: true, stage: "ink",
+    alt: { pt: "Plataforma de negociação whitelabel no modo escuro, com interface em verde, gráfico de candles, lista Top 20 Gainers e boleta de compra.",
+           en: "Whitelabel trading platform in dark mode with a green interface, candlestick chart, Top 20 Gainers list and order ticket." }
+  },
+  {
+    id: "banco-digital", title: { pt: "Banco Digital", en: "Digital Bank" }, type: { pt: "Site Institucional", en: "Corporate Website" }, year: "2024", org: "",
+    pitch: { pt: "Novo site institucional de um banco digital, que reúne em uma só experiência os canais para pessoas físicas e empresas.",
+             en: "A new corporate website for a digital bank that brings the channels for individuals and businesses into a single experience." },
+    category: "UX Research",
+    desc: { pt: "Unificar os sites voltados para pessoas físicas e jurídicas em uma experiência digital única e consistente.",
+            en: "Merge the websites for individuals and businesses into one consistent digital experience." },
+    done: { pt: ["Mapeamento de jornadas", "Auditoria de conteúdo", "Reestruturação da arquitetura da informação", "Elaboração de fluxogramas e protótipos de baixa fidelidade"],
+            en: ["Journey mapping", "Content audit", "Information architecture restructuring", "Flowcharts and low-fidelity prototypes"] },
+    img: "img/p/banco-digital.webp", illustrative: true, stage: "ink",
+    alt: { pt: "Home do site institucional do banco digital no navegador e no iPhone, com os cards de produtos de investimento.",
+           en: "Home page of the digital bank's corporate website in the browser and on iPhone, with the investment product cards." }
+  },
+  {
+    id: "intranet", title: "Intranet (CRM)", type: { pt: "Web e Mobile", en: "Web & Mobile" }, year: "2025", org: "",
+    pitch: { pt: "Plataforma interna corporativa que centraliza dados de colaboradores, clientes, sistemas e as operações do dia a dia.",
+             en: "An internal corporate platform that centralizes employee, client and system data and day-to-day operations." },
+    category: "Design Systems",
+    desc: { pt: "A interface defasada comprometia a consistência visual da plataforma, que não contava com um Design System.",
+            en: "An outdated interface undermined the visual consistency of the platform, which had no Design System." },
+    done: { pt: ["Redesign da interface", "Tokens e variáveis de design", "Criação e documentação de componentes", "Desenvolvimento do Design System", "Criação e design do aplicativo mobile"],
+            en: ["Interface redesign", "Design tokens and variables", "Component creation and documentation", "Design System development", "Mobile app creation and design"] },
+    img: "img/p/intranet.webp", illustrative: true, stage: "ink",
+    alt: { pt: "Cards do Design System da intranet com escala de cores, tipografia e alertas, ao lado da Home do app mobile no iPhone.",
+           en: "Intranet Design System cards with color scale, typography and alerts, next to the mobile app Home on iPhone." }
+  },
+  {
+    id: "recrutamento", title: { pt: "Recrutamento", en: "Recruitment" }, type: { pt: "App Web", en: "Web App" }, year: "2024", org: "",
+    pitch: { pt: "Plataforma de recrutamento por competências, que conecta o RH a candidatos avaliados por desafios práticos.",
+             en: "A skills-based recruitment platform that connects HR with candidates assessed through hands-on challenges." },
+    category: "UX Research",
+    desc: { pt: "Organizar uma plataforma com muitas funcionalidades, tornando sua estrutura mais clara e a navegação mais intuitiva para os usuários.",
+            en: "Organize a feature-heavy platform, making its structure clearer and its navigation more intuitive for users." },
+    done: { pt: ["Pesquisa com usuários", "Mapeamento de dores e necessidades", "Análise dos fluxos existentes", "Proposição de novos fluxos de navegação"],
+            en: ["User research", "Pain point and needs mapping", "Analysis of existing flows", "New navigation flow proposals"] },
+    img: "img/p/recrutamento.webp", illustrative: true, stage: "ink",
+    alt: { pt: "Dashboard do RH da plataforma de recrutamento no navegador e app do candidato no iPhone, com o gráfico de competências em destaque.",
+           en: "HR dashboard of the recruitment platform in the browser and the candidate app on iPhone, highlighting the skills chart." }
+  },
+];
+/* Hero: 5 projetos no leque, da esquerda para a direita (no celular aparecem os 3 do meio). */
+const FAN_ORDER = ["intranet", "oraculum", "prop-trading", "banco-digital", "homebroker-whitelabel"];
+const FAN_SLOTS = [
+  { x: "-36.5%", w: "20.5%", r: "-9deg", y: "60px", z: 3, depth: .5 },
+  { x: "-19.5%", w: "24%", r: "-5deg", y: "26px", z: 4, depth: .9 },
+  { x: "0%", w: "30%", r: "0deg", y: "0px", z: 5, depth: 1.4 },
+  { x: "19.5%", w: "24%", r: "5deg", y: "24px", z: 4, depth: .9 },
+  { x: "36.5%", w: "20.5%", r: "9deg", y: "58px", z: 3, depth: .5 }
+];
+/* Grade principal (2x2) e projetos revelados em "Ver mais" — cada linha tem até 2 projetos. */
+const GRID_ROWS = [["prop-trading", "oraculum"], ["banco-digital", "intranet"], ["homebroker-whitelabel", "recrutamento"]];
+/* A ordem da grade também define a navegação anterior/próximo do modal */
+const ORDER = GRID_ROWS.flat();
+PROJECTS.splice(0, PROJECTS.length, ...PROJECTS.filter(p => ORDER.includes(p.id)).sort((a, b) => ORDER.indexOf(a.id) - ORDER.indexOf(b.id)));
+
+/* Faixa de marcas: logos brancos em img/brands/. h = altura (px) calibrada para peso visual parecido. */
+const BRANDS = [
+  { name: "HUB3", logo: "hub3", h: 26 },
+  { name: "Blackarrow", logo: "blackarrow", h: 28 },
+  { name: "Profit", logo: "profit", h: 32 },
+  { name: "Nelogica", logo: "nelogica", h: 36 },
+  { name: "DEx01", logo: "dex01", h: 28 }
+];
+
+const SERVICES = [
+  {
+    title: ["UX/UI", "Design"],
+    desc: { pt: "Desenho experiências e interfaces para produtos digitais, estruturando fluxos, interações e soluções para web e mobile.",
+            en: "I design experiences and interfaces for digital products, structuring flows, interactions and solutions for web and mobile." },
+    tags: ["User Experience", "User Interface", "Interaction Design", "Prototyping"],
+    graphic: "ui"
+  },
+  {
+    title: ["UX", "Research"],
+    desc: { pt: "Investigo necessidades e comportamentos por meio de pesquisas com usuários, análise de dados e testes de usabilidade.",
+            en: "I investigate needs and behaviors through user research, data analysis and usability testing." },
+    tags: ["User Research", "Usability Testing", "Data Analysis", "Journey Mapping"],
+    graphic: "dots"
+  },
+  {
+    title: ["Product", "Strategy"],
+    desc: { pt: "Conecto necessidades dos usuários e objetivos de negócio para identificar oportunidades e orientar decisões de produto.",
+            en: "I connect user needs and business goals to identify opportunities and guide product decisions." },
+    tags: ["Discovery", "Problem Framing", "Data-Informed Design"],
+    graphic: "path"
+  },
+  {
+    title: ["Design", "Systems"],
+    desc: { pt: "Estruturo e evoluo Design Systems com componentes, tokens e documentação para garantir consistência e escalabilidade.",
+            en: "I structure and evolve Design Systems with components, tokens and documentation to ensure consistency and scalability." },
+    tags: ["Design Tokens", "Documentation", "Design Governance"],
+    graphic: "ds"
+  }
+];
+
+const EXPERIENCE = [
+  { when: { pt: "2024 — Atual", en: "2024 — Present" }, role: "UX/UI Designer", org: "Nelogica",
+    desc: { pt: "Atuação com foco em inovação, atualização e lançamento de plataformas web e app desktop e mobile. Contribuição ativa na criação e governança de design systems.",
+            en: "Focused on innovation, updates and launches of web platforms and desktop and mobile apps. Active contributor to the creation and governance of design systems." },
+    tags: { pt: ["Websites", "Aplicações Mobile e Desktop", "E-commerce", "Fintech"], en: ["Websites", "Mobile and Desktop Apps", "E-commerce", "Fintech"] } },
+  { when: "2023 — 2024", role: "Product Designer", org: "DEx01",
+    desc: { pt: "Atuação focada em UX, com ênfase em estratégia, compreensão de problemas e definição de experiência por meio de pesquisa, análise, validação com usuários, discovery e testes de usabilidade.",
+            en: "UX-focused work with an emphasis on strategy, problem understanding and experience definition through research, analysis, user validation, discovery and usability testing." },
+    tags: ["UX Design", "UX Research", "Design Systems", "Websites", "Multiple Clients"] },
+  { when: "2020 — 2023", role: "Advertising", org: { pt: "Empresas anteriores", en: "Previous companies" },
+    desc: { pt: "Antes de atuar com produtos digitais, trabalhei com Marketing, Social Media, Content Writing e Account Management: estratégias de comunicação, produção de conteúdo, briefings, campanhas, eventos e relacionamento com clientes.",
+            en: "Before working with digital products, I worked in Marketing, Social Media, Content Writing and Account Management: communication strategy, content production, briefs, campaigns, events and client relationships." },
+    tags: ["Marketing", "Social Media", "Content Writing", "Account Management"] }
+];
+
+const EDUCATION = [
+  { when: "2025 — 2026", role: { pt: "Pós-graduação em UX Design", en: "Postgraduate Degree in UX Design" }, org: "PUCRS — Porto Alegre" },
+  { when: "2019 — 2023", role: { pt: "Graduação em Publicidade e Propaganda", en: "Bachelor's Degree in Advertising" }, org: "PUCRS — Porto Alegre" }
+];
+
+/* Textos fixos da página (elementos com data-i18n no HTML) e rótulos gerados pelo script: [PT, EN] */
+const UI = {
+  metaDesc: ["Portfólio de Carolina Verran Hübler, Product Designer.", "Portfolio of Carolina Verran Hübler, Product Designer."],
+  skip: ["Pular para o conteúdo", "Skip to content"],
+  brandAria: ["Carolina Verran, voltar ao início", "Carolina Verran, back to top"],
+  navMain: ["Principal", "Main"],
+  navFooter: ["Rodapé", "Footer"],
+  navProjects: ["Projetos", "Projects"],
+  navAbout: ["Sobre", "About"],
+  navServices: ["Atuação", "Expertise"],
+  navContact: ["Contato", "Contact"],
+  aboutMe: ["Sobre mim", "About me"],
+  services: ["Áreas de atuação", "Areas of expertise"],
+  letsTalk: ["Vamos conversar", "Let's talk"],
+  close: ["Fechar", "Close"],
+  fanAria: ["Prévia dos projetos. Selecione um para ver o resumo.", "Project preview. Select one to see its summary."],
+  brands: ["Marcas", "Brands"],
+  projectsTitle: ['Projetos<br>recentes<span class="dot">.</span>', 'Recent<br>projects<span class="dot">.</span>'],
+  projectsLead: ["Uma seleção de projetos em que atuei da pesquisa à interface. Nos cases corporativos, as imagens são ilustrativas e as marcas e dados foram alterados por confidencialidade.",
+                 "A selection of projects I worked on, from research to interface. In the corporate cases, images are illustrative and brands and data have been changed for confidentiality."],
+  portraitAlt: ["Retrato de Carolina Verran Hübler.", "Portrait of Carolina Verran Hübler."],
+  aboutTitle: ['Movida pela curiosidade de entender pessoas, contextos e decisões<span class="dot">.</span>', 'Driven by curiosity to understand people, contexts and decisions<span class="dot">.</span>'],
+  tabProfile: ["Perfil", "Profile"],
+  tabExp: ["Experiência", "Experience"],
+  tabEdu: ["Formação", "Education"],
+  bio: ["Antes de desenhar qualquer coisa, busco entender o contexto do problema para que cada decisão tenha embasamento em dados reais. Valorizo a estrutura e a padronização. Afinal, produto bom depende de coerência e escala.",
+        "Before designing anything, I seek to understand the context of the problem so that every decision is grounded in real data. I value structure and standardization. After all, a good product depends on consistency and scale."],
+  fact1: ["4 anos", "4 years"],
+  fact1s: ["de experiência", "of experience"],
+  fact2s: ["produtos digitais", "digital products"],
+  fact3s: ["de usuários ativos", "active users"],
+  servicesTitle: ['Áreas de atuação<span class="dot">.</span>', 'Areas of expertise<span class="dot">.</span>'],
+  contactQ: ["?", "."],
+  contactTitle: ["Vamos trabalhar juntos", "Let's work together"],
+  toTop: ["Voltar ao topo", "Back to top"],
+  prev: ["Projeto anterior", "Previous project"],
+  next: ["Próximo projeto", "Next project"],
+  cv: ["Currículo", "CV"],
+  openPdf: ["Abrir PDF", "Open PDF"],
+  closeCv: ["Fechar currículo", "Close CV"],
+  /* gerados pelo script */
+  openSummary: ["abrir resumo do projeto", "open project summary"],
+  tapFlip: ["Toque para virar ↻", "Tap to flip ↻"],
+  details: ["Ver detalhes", "View details"],
+  backImg: ["Voltar à imagem", "Back to image"],
+  illustrative: ["Imagem ilustrativa", "Illustrative image"],
+  dtContext: ["Contexto", "Context"],
+  dtChallenge: ["Desafio", "Challenge"],
+  dtDone: ["O que foi feito", "What I did"],
+  email: ["E-mail", "Email"],
+  phone: ["Telefone", "Phone"],
+  copy: ["Copiar", "Copy"],
+  copied: ["Copiado", "Copied"],
+  selected: ["Selecionado", "Selected"],
+  open: ["Abrir", "Open"],
+  cvYear: ["Currículo 2026", "CV 2026"],
+  viewCv: ["Ver currículo", "View CV"]
+};
+
+/* null = ainda não informado → aparece como placeholder identificado. */
+const CONTACT = {
+  email: "ccverran@gmail.com",
+  phone: "+55 (51) 9 8954-4994",
+  linkedin: "https://www.linkedin.com/in/carolinaverran",
+  cv: "curriculo-carolina-verran.pdf"
+};
+
+/* =====================================================================
+   RENDER + INTERAÇÕES
+   ===================================================================== */
+/* Idioma: PT por padrão; ?lang=en na URL ou a última escolha do visitante abrem em inglês */
+let LANG = "pt";
+/* Sem escolha salva nem ?lang na URL: abre em inglês para quem usa o navegador em outro idioma que não o português */
+const browserLang = () => ((navigator.languages && navigator.languages[0]) || navigator.language || "pt").toLowerCase().startsWith("pt") ? "pt" : "en";
+try { LANG = new URLSearchParams(location.search).get("lang") || localStorage.getItem("cv-lang") || browserLang(); } catch { LANG = browserLang(); }
+if (LANG !== "en") LANG = "pt";
+const L = v => (v && typeof v === "object" && !Array.isArray(v)) ? (v[LANG] ?? v.pt) : v;
+const t = key => UI[key][LANG === "en" ? 1 : 0];
+document.documentElement.lang = LANG === "en" ? "en" : "pt-BR";
+document.documentElement.classList.add("js");
+const $ = (s, el = document) => el.querySelector(s);
+const byId = id => PROJECTS.find(p => p.id === id);
+const pad = n => String(n).padStart(2, "0");
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const chips = tags => tags.map(t => `<span class="chip">${esc(t)}</span>`).join("");
+const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)");
+const finePointer = matchMedia("(hover: hover) and (pointer: fine)");
+const ARROW = `<svg class="icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12L12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+const indexOf = id => PROJECTS.findIndex(p => p.id === id);
+
+/* ---- Hero fan ---- */
+const fan = $("#fan");
+fan.innerHTML = FAN_ORDER.map((id, i) => {
+  const p = byId(id), f = FAN_SLOTS[i];
+  return `<button class="fan-card" type="button" data-id="${p.id}" data-i="${i}"
+    style="--i:${i};--x:${f.x};--w:${f.w};--r:${f.r};--y:${f.y};--z:${f.z};--depth:${f.depth}"
+    aria-label="${esc(L(p.title))}: ${t("openSummary")}">
+      <img src="${p.img}" alt="" loading="eager">
+      <span class="label">${esc(L(p.title))}</span>
+      <span class="open" aria-hidden="true">${ARROW}</span>
+    </button>`;
+}).join("");
+
+const fanCards = [...fan.querySelectorAll(".fan-card")];
+function spreadFrom(active) {
+  fanCards.forEach((c, i) => c.style.setProperty("--spread", active < 0 || i === active ? 0 : (i < active ? -1 : 1)));
+}
+fanCards.forEach((c, i) => {
+  c.addEventListener("pointerenter", () => spreadFrom(i));
+  c.addEventListener("focus", () => spreadFrom(i));
+  c.addEventListener("blur", () => spreadFrom(-1));
+  c.addEventListener("click", () => openModal(c.dataset.id, c));
+});
+fan.addEventListener("pointerleave", () => spreadFrom(-1));
+const hero = $(".hero");
+hero.addEventListener("pointermove", e => {
+  if (!finePointer.matches || reduceMotion.matches) return;
+  const r = hero.getBoundingClientRect();
+  fan.style.setProperty("--px", ((e.clientX - r.left) / r.width - .5) * 2);
+  fan.style.setProperty("--py", ((e.clientY - r.top) / r.height - .5) * 2);
+});
+hero.addEventListener("pointerleave", () => { fan.style.setProperty("--px", 0); fan.style.setProperty("--py", 0); });
+
+/* ---- Brands marquee (lista duplicada para o loop contínuo) ---- */
+/* Com poucas marcas, cada metade repete a sequência para cobrir telas largas sem buraco no loop */
+const brandLi = (b, dup) => `<li${dup ? ' class="dup" aria-hidden="true"' : ""}><img src="img/brands/${b.logo}.webp" alt="${dup ? "" : esc(b.name)}" style="height:${(b.h * 0.75).toFixed(1)}px" loading="eager"></li>`;
+const brandList = `<ul>${BRANDS.map(b => brandLi(b)).join("")}${BRANDS.map(b => brandLi(b, true)).join("")}</ul>`;
+$("#brands").innerHTML = brandList + brandList.replace("<ul>", '<ul aria-hidden="true">').replace(/alt="[^"]*"/g, 'alt=""');
+
+/* ---- Grid 2x2 com flip ---- */
+function workCard(p) {
+  return `<article class="work reveal" data-id="${p.id}" aria-labelledby="w-${p.id}">
+    <div class="flip">
+      <div class="flip-inner">
+        <div class="face face-front" data-stage="${p.stage}">
+          <img class="cover" src="${p.img}" alt="${esc(L(p.alt))}" loading="lazy">
+          <span class="tap-hint" aria-hidden="true">${t("tapFlip")}</span>
+          <span class="front-bar"><span class="front-title" aria-hidden="true"><b>${esc(L(p.title))}</b><span>${esc(p.org || L(p.type))}</span></span><span class="cat">${esc(p.category)}</span></span>
+        </div>
+        <div class="face face-back">
+          <div>
+            <div class="meta mono"><span class="client">${esc(p.org || L(p.type))}</span></div>
+            <h3 id="w-${p.id}">${esc(L(p.title))}</h3>
+          </div>
+          <p>${esc(L(p.pitch || p.desc))}</p>
+          <div class="chips">${chips([L(p.type), p.category])}</div>
+          <div class="actions">
+            <button class="btn btn--line btn--small btn--plain" type="button" data-open="${p.id}">${t("details")}</button>
+            <button class="back-btn" type="button" data-unflip>${t("backImg")}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>`;
+}
+/* Contador de projetos do menu do celular acompanha a lista */
+$("#menu-count").textContent = `( ${pad(PROJECTS.length)} )`;
+const rowsHTML = rows => rows.map(row => `<div class="grid-row${row.length === 1 ? " grid-row--single" : ""}">${row.map(id => workCard(byId(id))).join("")}</div>`).join("");
+const renderGrid = () => { $("#grid").innerHTML = rowsHTML(GRID_ROWS); };
+renderGrid();
+/* Logo e monograma: com mouse, a animação dura enquanto o cursor estiver em cima;
+   no toque (celular), ela acontece ao tocar e volta sozinha ~1s depois. */
+document.querySelectorAll(".logo-tap").forEach(el => {
+  const target = el.closest("a") || el;
+  let t;
+  target.addEventListener("pointerenter", e => { if (e.pointerType === "mouse") el.classList.add("is-on"); });
+  target.addEventListener("pointerleave", e => { if (e.pointerType === "mouse") el.classList.remove("is-on"); });
+  target.addEventListener("pointerdown", e => {
+    if (e.pointerType === "mouse") return;
+    el.classList.add("is-on"); clearTimeout(t);
+    t = setTimeout(() => el.classList.remove("is-on"), 1100);
+  });
+});
+function onWorkClick(e) {
+  const open = e.target.closest("[data-open]");
+  if (open) { e.stopPropagation(); openModal(open.dataset.open, open); return; }
+  const work = e.target.closest(".work");
+  if (!work) return;
+  if (e.target.closest("[data-unflip]")) { work.classList.remove("is-flipped"); return; }
+  if (e.target.closest(".flip")) {
+    if (finePointer.matches) openModal(work.dataset.id, work);   // mouse: o verso já está visível no hover
+    else work.classList.toggle("is-flipped");                    // toque: toque vira a carta
+  }
+}
+$("#grid").addEventListener("click", onWorkClick);
+
+/* ---- Modal ---- */
+const modal = $("#project-modal");
+let current = 0, returnFocus = null;
+function fillModal(i) {
+  current = (i + PROJECTS.length) % PROJECTS.length;
+  const p = PROJECTS[current];
+  const media = $("#modal-media");
+  media.dataset.stage = p.stage;
+  media.innerHTML = `<img class="cover" src="${p.img}" alt="${esc(L(p.alt))}">${p.illustrative ? `<span class="media-note">${t("illustrative")}</span>` : ""}`;
+  $("#modal-client").textContent = p.category;
+  $("#modal-title").textContent = L(p.title);
+  $("#modal-dl").innerHTML = `
+    <div><dt>${t("dtContext")}</dt><dd>${esc(L(p.type))}${p.org ? " · " + esc(p.org) : ""}</dd></div>
+    <div><dt>${t("dtChallenge")}</dt><dd class="lead">${esc(L(p.desc))}</dd></div>
+    <div><dt>${t("dtDone")}</dt><dd><ul class="done">${L(p.done).map(d => `<li>${esc(d)}</li>`).join("")}</ul></dd></div>`;
+}
+function openModal(id, from) {
+  returnFocus = from || document.activeElement;
+  fillModal(indexOf(id));
+  if (!modal.open) modal.showModal();
+  document.body.style.overflow = "hidden";
+  $("#modal-close").focus();
+}
+function closeModal() { modal.close(); }
+modal.addEventListener("close", () => { document.body.style.overflow = ""; returnFocus?.focus?.({ preventScroll: true }); });
+$("#modal-close").addEventListener("click", closeModal);
+$("#modal-prev").addEventListener("click", () => fillModal(current - 1));
+$("#modal-next").addEventListener("click", () => fillModal(current + 1));
+modal.addEventListener("click", e => { if (e.target === modal) closeModal(); });
+modal.addEventListener("keydown", e => {
+  if (e.key === "ArrowRight") fillModal(current + 1);
+  if (e.key === "ArrowLeft") fillModal(current - 1);
+});
+
+/* ---- Sobre: abas ---- */
+const tl = items => items.map(x => `<li>
+  <span class="when">${esc(L(x.when))}</span>
+  <div><h3>${esc(L(x.role))} <span>${esc(L(x.org))}</span></h3>${x.desc ? `<p>${esc(L(x.desc))}</p>` : ""}${x.tags ? `<div class="chips">${chips(L(x.tags))}</div>` : ""}</div>
+</li>`).join("");
+const renderTimeline = () => { $("#exp-list").innerHTML = tl(EXPERIENCE); $("#edu-list").innerHTML = tl(EDUCATION); };
+renderTimeline();
+const tabs = [...document.querySelectorAll('[role="tab"]')];
+function selectTab(tab, focus) {
+  tabs.forEach(t => {
+    const on = t === tab;
+    t.setAttribute("aria-selected", on);
+    t.tabIndex = on ? 0 : -1;
+    document.getElementById(t.getAttribute("aria-controls")).hidden = !on;
+  });
+  if (focus) tab.focus();
+}
+tabs.forEach((t, i) => {
+  t.addEventListener("click", () => selectTab(t));
+  t.addEventListener("keydown", e => {
+    const d = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
+    if (d) { e.preventDefault(); selectTab(tabs[(i + d + tabs.length) % tabs.length], true); }
+    if (e.key === "Home") { e.preventDefault(); selectTab(tabs[0], true); }
+    if (e.key === "End") { e.preventDefault(); selectTab(tabs[tabs.length - 1], true); }
+  });
+});
+
+/* ---- Áreas de atuação ---- */
+function graphic(kind) {
+  if (kind === "ui") return `<svg class="graphic g-ui" viewBox="0 0 240 150" aria-hidden="true">
+    <rect class="g-soft" x="0" y="0" width="240" height="150" rx="14"/>
+    <rect class="g-fill a" x="16" y="16" width="62" height="12" rx="6"/>
+    <rect class="g-stroke b" x="16" y="40" width="96" height="44" rx="8"/>
+    <rect class="g-stroke c" x="124" y="40" width="100" height="44" rx="8"/>
+    <rect class="g-stroke d" x="16" y="96" width="208" height="38" rx="8"/>
+    <rect class="g-fill" x="168" y="16" width="56" height="12" rx="6" opacity=".35"/>
+    <path class="g-fill cursor" d="M186 104 l0 22 l6 -6 l5 11 l4 -2 l-5 -11 l8 0 z"/>
+  </svg>`;
+  if (kind === "dots") {
+    const centers = [[56, 48], [176, 50], [118, 112]];
+    let seed = 7; const rnd = () => (seed = (seed * 9301 + 49297) % 233280) / 233280;
+    const dots = Array.from({ length: 21 }, (_, k) => {
+      const x = 14 + rnd() * 212, y = 14 + rnd() * 122, c = centers[k % 3];
+      const ang = rnd() * Math.PI * 2, rad = 6 + rnd() * 16;
+      const dx = (c[0] + Math.cos(ang) * rad - x).toFixed(1), dy = (c[1] + Math.sin(ang) * rad - y).toFixed(1);
+      return `<circle class="dot ${k % 5 === 0 ? "g-fill" : ""}" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${k % 5 === 0 ? 5 : 3.6}" style="--dx:${dx}px;--dy:${dy}px;--k:${k}" ${k % 5 === 0 ? "" : 'fill="currentColor"'}/>`;
+    }).join("");
+    return `<svg class="graphic g-dots" viewBox="0 0 240 150" aria-hidden="true" style="color:var(--c-fg)">
+      <rect class="g-soft" x="0" y="0" width="240" height="150" rx="14"/>
+      ${centers.map(c => `<circle class="cluster g-stroke" cx="${c[0]}" cy="${c[1]}" r="30" stroke-dasharray="3 4"/>`).join("")}
+      ${dots}
+    </svg>`;
+  }
+  if (kind === "path") return `<svg class="graphic g-path" viewBox="0 0 240 150" aria-hidden="true">
+    <rect class="g-soft" x="0" y="0" width="240" height="150" rx="14"/>
+    <path class="g-stroke wander" d="M28 75 L112 32 M28 75 L112 75 M28 75 L112 118 M112 75 L212 75 M112 118 L212 75"/>
+    <path class="g-stroke direct" d="M28 75 L112 32 L212 75"/>
+    <circle class="opt" cx="112" cy="75" r="6" fill="var(--c-bg)" stroke="var(--c-fg)" stroke-width="1.5"/>
+    <circle class="opt" cx="112" cy="118" r="6" fill="var(--c-bg)" stroke="var(--c-fg)" stroke-width="1.5"/>
+    <circle class="node pick" cx="112" cy="32" r="6" fill="var(--c-bg)" stroke="var(--c-fg)" stroke-width="1.5"/>
+    <circle class="g-fill node" cx="28" cy="75" r="7"/>
+    <circle class="g-fill node" cx="212" cy="75" r="9"/>
+    <circle cx="212" cy="75" r="15" class="g-stroke" stroke-dasharray="3 4"/>
+  </svg>`;
+  /* Design Systems: peças soltas que se organizam em um sistema */
+  const T = [
+    [`<rect class="g-fill" x="16" y="54" width="62" height="20" rx="10"/>`, 10, 50, -8],
+    [`<rect class="g-stroke" x="86" y="54" width="138" height="20" rx="6"/>`, -10, 34, 5],
+    [`<rect class="g-stroke" x="16" y="84" width="100" height="50" rx="8"/><rect class="g-fill" x="26" y="94" width="40" height="6" rx="3"/>`, 4, -30, -6],
+    [`<rect class="g-stroke" x="126" y="84" width="38" height="20" rx="10"/><circle class="g-fill" cx="153" cy="94" r="6"/>`, -40, -44, 12],
+    [`<rect class="g-stroke" x="172" y="84" width="52" height="20" rx="10"/>`, -4, -50, -10],
+    [`<rect class="g-stroke" x="126" y="114" width="98" height="20" rx="6"/>`, -20, -6, 7]
+  ].map(([el, dx, dy, rot], k) => `<g class="tile" style="--dx:${dx}px;--dy:${dy}px;--rot:${rot}deg;--k:${k}">${el}</g>`).join("");
+  return `<svg class="graphic g-ds" viewBox="0 0 240 150" aria-hidden="true">
+    <rect class="g-soft" x="0" y="0" width="240" height="150" rx="14"/>
+    <circle class="g-fill sw" cx="26" cy="28" r="8"/>
+    <circle class="sw" cx="48" cy="28" r="8" fill="var(--c-fg)"/>
+    <circle class="sw g-stroke" cx="70" cy="28" r="8"/>
+    <rect x="92" y="25" width="56" height="6" rx="3" fill="var(--c-fg)" opacity=".25"/>
+    ${T}
+  </svg>`;
+}
+$("#svc-list").innerHTML = SERVICES.map((s, i) => `<li class="svc reveal" tabindex="0" aria-labelledby="svc-${i}">
+  <h3 id="svc-${i}">${s.title.map(t => `<span>${esc(t)}</span>`).join("")}</h3>
+  ${graphic(s.graphic)}
+  <p>${esc(L(s.desc))}</p>
+  <div class="chips">${chips(s.tags)}</div>
+</li>`).join("");
+
+/* Em telas de toque, o card ativo é o que está em foco na rolagem */
+const svcs = [...document.querySelectorAll(".svc")];
+if (!finePointer.matches && "IntersectionObserver" in window) {
+  const io = new IntersectionObserver(es => es.forEach(e => e.target.classList.toggle("is-active", e.intersectionRatio > .85)), { threshold: [0, .85, 1] });
+  svcs.forEach(s => io.observe(s));
+}
+
+/* ---- Contato ---- */
+const COPY_ICON = `<svg class="icon" viewBox="0 0 16 16" aria-hidden="true"><rect x="5" y="5" width="8.5" height="8.5" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3 10.5V3.5A1 1 0 0 1 4 2.5h6.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>`;
+function channel(k, value, action, phText) {
+  if (!value) return `<li class="channel placeholder"><span class="k">${k}</span><span class="v"><span class="ph-tag">Placeholder</span>${phText}</span><button class="icon-btn" type="button" disabled aria-disabled="true">${action}</button></li>`;
+  return null;
+}
+function renderChannels() {
+  const ch = [];
+  ch.push(`<li class="channel"><span class="k">${t("email")}</span><span class="v"><a href="mailto:${esc(CONTACT.email)}">${esc(CONTACT.email)}</a></span><button class="icon-btn" type="button" id="copy-email" aria-live="polite">${COPY_ICON}<span>${t("copy")}</span></button></li>`);
+  ch.push(`<li class="channel"><span class="k">${t("phone")}</span><span class="v">${esc(L(CONTACT.phone))}</span><button class="icon-btn" type="button" data-copy="${esc(L(CONTACT.phone))}">${COPY_ICON}<span>${t("copy")}</span></button></li>`);
+  ch.push(`<li class="channel"><span class="k">LinkedIn</span><span class="v"><a href="${esc(CONTACT.linkedin)}" target="_blank" rel="noopener">${esc(CONTACT.linkedin.replace(/^https?:\/\/(www\.)?/, ""))}</a></span><a class="icon-btn" href="${esc(CONTACT.linkedin)}" target="_blank" rel="noopener">${t("open")} ${ARROW}</a></li>`);
+  ch.push(`<li class="channel"><span class="k">${t("cv")}</span><span class="v">${t("cvYear")}</span><button class="icon-btn" type="button" id="open-cv">${t("viewCv")} ${ARROW}</button></li>`);
+  $("#channels").innerHTML = ch.join("");
+}
+renderChannels();
+document.querySelectorAll('[data-bind="email"]').forEach(el => el.textContent = CONTACT.email);
+
+async function copyText(text, btn) {
+  const label = btn.querySelector("span");
+  const old = label.textContent;
+  try { await navigator.clipboard.writeText(text); label.textContent = t("copied"); }
+  catch {
+    const r = document.createRange(); r.selectNodeContents(btn.previousElementSibling);
+    const s = getSelection(); s.removeAllRanges(); s.addRange(r);
+    label.textContent = t("selected");
+  }
+  btn.classList.add("ok");
+  setTimeout(() => { label.textContent = old; btn.classList.remove("ok"); }, 1800);
+}
+/* Cliques do contato por delegação: continuam funcionando quando a lista é refeita na troca de idioma */
+$("#channels").addEventListener("click", e => {
+  const b = e.target.closest("#copy-email, [data-copy], #open-cv");
+  if (!b) return;
+  if (b.id === "copy-email") copyText(CONTACT.email, b);
+  else if (b.id === "open-cv") openCv(b);
+  else copyText(b.dataset.copy, b);
+});
+/* Currículo: abre dentro da página; "Abrir PDF" usa o endereço completo do arquivo publicado */
+const cvDialog = $("#cv-dialog");
+/* PDF do currículo no idioma ativo */
+const setCvPdf = () => { try { $("#cv-pdf").href = new URL(LANG === "en" ? "cv-carolina-verran-en.pdf" : CONTACT.cv, location.href).href; } catch {} };
+setCvPdf();
+function openCv(from) {
+  returnFocus = from;
+  cvDialog.showModal(); document.body.style.overflow = "hidden";
+  cvDialog.querySelector(`.cv-doc[data-lang="${LANG}"]`).scrollTop = 0;
+  $("#cv-close").focus();
+}
+$("#about-cv").addEventListener("click", e => openCv(e.currentTarget));
+$("#cv-close").addEventListener("click", () => cvDialog.close());
+cvDialog.addEventListener("click", e => { if (e.target === cvDialog) cvDialog.close(); });
+cvDialog.addEventListener("close", () => { document.body.style.overflow = ""; returnFocus?.focus?.({ preventScroll: true }); });
+
+
+/* ---- Header, menu mobile, seção ativa ---- */
+const bar = $("#top-bar");
+const onScroll = () => bar.classList.toggle("is-scrolled", scrollY > 24);
+addEventListener("scroll", onScroll, { passive: true }); onScroll();
+
+const menu = $("#mobile-menu"), menuOpen = $("#menu-open");
+function setMenu(open) {
+  menu.hidden = !open;
+  menuOpen.setAttribute("aria-expanded", open);
+  document.body.style.overflow = open ? "hidden" : "";
+  (open ? $("#menu-close") : menuOpen).focus();
+}
+menuOpen.addEventListener("click", () => setMenu(true));
+$("#menu-close").addEventListener("click", () => setMenu(false));
+menu.addEventListener("click", e => { if (e.target.closest("a")) setMenu(false); });
+menu.addEventListener("keydown", e => {
+  if (e.key === "Escape") setMenu(false);
+  if (e.key === "Tab") {
+    const f = [...menu.querySelectorAll("a, button")];
+    if (e.shiftKey && document.activeElement === f[0]) { e.preventDefault(); f.at(-1).focus(); }
+    else if (!e.shiftKey && document.activeElement === f.at(-1)) { e.preventDefault(); f[0].focus(); }
+  }
+});
+
+const navLinks = [...document.querySelectorAll(".nav-links a")];
+if ("IntersectionObserver" in window) {
+  const secIO = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    navLinks.forEach(a => a.setAttribute("aria-current", a.getAttribute("href") === "#" + e.target.id));
+  }), { rootMargin: "-45% 0px -50% 0px" });
+  ["projetos", "sobre", "servicos", "contato"].forEach(id => secIO.observe(document.getElementById(id)));
+
+  /* Entrada suave: só deslocamento, o conteúdo fica visível em repouso */
+  const revIO = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); revIO.unobserve(e.target); } }), { rootMargin: "0px 0px -8% 0px" });
+  document.querySelectorAll(".reveal").forEach(el => {
+    if (el.getBoundingClientRect().top < innerHeight) el.classList.add("in"); else revIO.observe(el);
+  });
+} else document.querySelectorAll(".reveal").forEach(el => el.classList.add("in"));
+
+/* ---- Idioma PT / EN ---- */
+const langSwitch = $("#lang-switch");
+function applyLang() {
+  const en = LANG === "en";
+  document.documentElement.lang = en ? "en" : "pt-BR";
+  langSwitch.setAttribute("aria-checked", en);
+  document.querySelectorAll("[data-i18n]").forEach(el => el.textContent = t(el.dataset.i18n));
+  document.querySelectorAll("[data-i18n-html]").forEach(el => el.innerHTML = t(el.dataset.i18nHtml));
+  document.querySelectorAll("[data-i18n-aria]").forEach(el => el.setAttribute("aria-label", t(el.dataset.i18nAria)));
+  document.querySelectorAll("[data-i18n-alt]").forEach(el => el.alt = t(el.dataset.i18nAlt));
+  document.querySelectorAll("[data-i18n-content]").forEach(el => el.content = t(el.dataset.i18nContent));
+  document.querySelectorAll(".cv-doc").forEach(el => el.hidden = el.dataset.lang !== LANG);
+  /* Leque: só troca os textos, mantendo posições e eventos */
+  fanCards.forEach(c => {
+    const p = byId(c.dataset.id);
+    c.setAttribute("aria-label", `${L(p.title)}: ${t("openSummary")}`);
+    c.querySelector(".label").textContent = L(p.title);
+  });
+  /* Grade: refaz os cards já visíveis (sem repetir a animação de entrada) */
+  renderGrid();
+  document.querySelectorAll("#grid .reveal").forEach(el => el.classList.add("in"));
+  renderTimeline();
+  document.querySelectorAll(".svc").forEach((li, i) => li.querySelector("p").textContent = L(SERVICES[i].desc));
+  renderChannels();
+  setCvPdf();
+  if (modal.open) fillModal(current);
+}
+langSwitch.addEventListener("click", () => {
+  LANG = LANG === "en" ? "pt" : "en";
+  try { localStorage.setItem("cv-lang", LANG); } catch {}
+  applyLang();
+});
+if (LANG === "en") applyLang();
+</script>
